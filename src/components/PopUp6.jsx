@@ -2,7 +2,7 @@ import React from "react";
 
 const PopUp6 = () => {
     return (
-        <div className="h-auto w-auto xl:w-[720px] flex flex-col bg-[#f6f6ea] items-center justify-center gap-y-12 font-baloo mt-[-300px] mr-auto[-16px] xl:mr-auto sshadow-xl mx-6 rounded-lg p-8">
+        <div className="h-auto w-auto xl:w-[720px] flex flex-col bg-[rgb(252,251,250)] items-center justify-center gap-y-12 font-baloo mt-[-300px] mr-auto[-16px] xl:mr-auto sshadow-xl mx-6 rounded-lg p-8">
 
 <h1 className=" font-extrabold text-2xl xl:text-3xl text-center text-[#e5bc54]">Marlène Perez <br></br> 
 professeure de chant et de techniques vocales</h1>

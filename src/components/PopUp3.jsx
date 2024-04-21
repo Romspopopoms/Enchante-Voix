@@ -2,29 +2,34 @@ import React from "react";
 
 const PopUp3 = () => {
     return (
-        <div className="h-auto w-auto xl:w-[720px] flex flex-col bg-[#f6f6ea] items-center justify-center gap-y-12 font-baloo mt-[720px] mx-4 shadow-xl rounded-lg p-8 ">
+        <div className="relative h-auto w-auto xl:h-[950px] xl:w-[720px] flex flex-col bg-[#fcfbfa] items-center justify-center gap-y-12 font-baloo mt-[430px] mx-6 shadow-xl rounded-lg p-8 ">
 
-<h1 className=" font-extrabold text-2xl xl:text-3xl text-center text-[#e5bc54]">Vous chercher à developper votre voix ?</h1>
-<p className="text-[#D4AA40] text-center text-lg xl:text-xl font-baloo"> Artistes chanteurs : <br></br><br></br>
-
-Perfectionner leur compétences vocales, 
-travailler sur des techniques spécifiques 
-et adaptées à leurs besoins, 
-élargir leur registre vocal 
-et explorer de nouvelles possibilités, 
-améliorer leur performance sur scène 
+<h1 className="font-extrabold text-3xl xl:text-5xl text-center absolute top-12 xl:top-20 text-[#e5bc54] ">Pour les professionnels</h1>
+<div className="flex flex-col gap-y-4 xl:gap-y-12 mt-20 xl:mt-16">
+            <p className=" text-[#C6941A] text-center text-xl xl:text-3xl font-semibold font-baloo"> Artistes chanteurs : </p>
+<p className=" text-[#D4AA40] text-center text-xl xl:text-3xl font-baloo">
+Perfectionner leur compétences vocales, <br></br> 
+travailler sur des techniques spécifiques <br></br>
+et adaptées à leurs besoins, <br></br>
+élargir leur registre vocal <br></br>
+et explorer de nouvelles possibilités,<br></br> 
+améliorer leur performance sur scène <br></br> 
 aussi bien vocale qu'au niveau de l'interprétation.
-<br></br><br></br>
+</p>
 
-Voix parlée : voix off, comédiens, avocats, 
-personnel soignants, enseignants, 
-orateurs, conférenciers, secrétaires, 
-toutes personnes en télétravail… 
-<br></br><br></br>
-                <span className="font-bold text-[#C6941A] text-center text-lg xl:text-xl ">Trouver plus de confort et limiter la fatigue vocale !</span> </p>
+<p className=" text-[#D4AA40] text-center text-xl xl:text-3xl font-baloo">
+Voix parlée : voix off, comédiens, avocats, <br></br> 
+personnel soignants, enseignants, <br></br>
+orateurs, conférenciers, secrétaires,<br></br>
+toutes personnes en télétravail…  
 
+</p>
+<p className=" text-[#D4AA40] text-center text-xl xl:text-3xl font-baloo"> 
+Trouver plus de confort et limiter la fatigue vocale
+</p>
+            </div>
         </div>
     )
 }
 
-export default PopUp3 
+export default PopUp3

@@ -2,7 +2,7 @@ import React from "react";
 
 const PopUp5 = () => {
     return (
-        <div className="relative h-auto w-auto xl:w-[720px] flex flex-col bg-[#f6f6ea] items-center justify-center font-baloo mt-[-300px] shadow-xl mx-6 rounded-lg p-8 ">
+        <div className="relative h-auto w-auto xl:w-[720px] flex flex-col bg-[rgb(252,251,250)] items-center justify-center font-baloo mt-[-300px] shadow-xl mx-6 rounded-lg p-8 ">
 
 <h1 className="absolute top-9 font-extrabold text-2xl xl:text-3xl text-center text-[#e5bc54]">Infos de paiement</h1>
 <p className="text-[#D4AA40] text-center text-lg xl:text-xl font-baloo mt-20 xl:mt-0">Les cours sont assurés hors périodes vacances scolaires.<br></br><br></br>
