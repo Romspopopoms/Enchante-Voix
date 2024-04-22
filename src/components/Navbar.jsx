@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom'; // Importez Link depuis react-router-dom
 import Logo from "../assets/Frame 1.png"
-import { useAuth } from '..//AuthContext'; // Assurez-vous que le chemin est correct
+import { useAuth } from '../AuthContext'; // Assurez-vous que le chemin est correct
 
 const Menu = [
     {
