@@ -17,7 +17,7 @@ const AdminLoginForm = () => {
             const data = await response.json();
             if (data.success) {
                 console.log('Connexion réussie');
-                window.location.href = '/ArticlesPage';
+                window.location.href = '/';
             } else {
                 console.error('Échec de la connexion', data.message);
             }
