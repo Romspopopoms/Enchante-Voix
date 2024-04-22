@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import { useAuth } from '../AuthContext'; // Assurez-vous que le chemin est correct
 import Logo from "../assets/Frame 1.png";
 
 const Menu = [
@@ -14,7 +15,8 @@ const MenuAdmin = [
     { title: "Analyse", link: "/analyse" }
 ];
 
-const Navbar = (isLoggedIn, logout) => {
+const Navbar = () => {
+    const { isLoggedIn, logout } = useAuth()
 
     if (isLoggedIn) {
         return (
