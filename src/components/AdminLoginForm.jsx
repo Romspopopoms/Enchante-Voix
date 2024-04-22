@@ -4,7 +4,7 @@ const AdminLoginForm = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event, login) => {
         event.preventDefault();
         try {
             const response = await fetch('/api/login', {
@@ -18,6 +18,8 @@ const AdminLoginForm = () => {
             if (data.success) {
                 console.log('Connexion réussie');
                 window.location.href = '/';
+                login();  // Met à jour l'état global de connexion
+
             } else {
                 console.error('Échec de la connexion', data.message);
             }
