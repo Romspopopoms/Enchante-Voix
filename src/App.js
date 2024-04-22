@@ -2,6 +2,7 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ArticleProvider } from './ArticleContext'; // Assurez-vous que le chemin est correct
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import { Analytics } from "@vercel/analytics/react"
 
 import Home from './pages/Home';
 import Activites from './pages/Activites';
@@ -30,6 +31,8 @@ const App = () => {
         </Routes>
         <Footer />
         <SpeedInsights />
+        <Analytics />
+
     </div>
     </Router>
     </ArticleProvider>
