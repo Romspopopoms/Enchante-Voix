@@ -1,6 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ArticleProvider } from './ArticleContext'; // Assurez-vous que le chemin est correct
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 import Home from './pages/Home';
 import Activites from './pages/Activites';
@@ -28,6 +29,7 @@ const App = () => {
           {/* Ajoutez d'autres routes selon vos besoins */}
         </Routes>
         <Footer />
+        <SpeedInsights />
     </div>
     </Router>
     </ArticleProvider>

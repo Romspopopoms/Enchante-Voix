@@ -8,7 +8,7 @@ app.use(cors());
 
 app.post('/api/LoginFunc', (req, res) => {
     const { username, password } = req.body;
-    const adminPassword = process.env.ADMIN_PASSWORD; // Assurez-vous que cette variable est bien définie dans votre environnement de serveur
+    const adminPassword = process.env.ADMIN_PASSWORD || "romano13600"; // Assurez-vous que cette variable est bien définie dans votre environnement de serveur
 
     console.log("Admin Password from ENV:", adminPassword); // Log pour le débogage
 
