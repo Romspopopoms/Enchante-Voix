@@ -43,6 +43,11 @@ const Navbar = (login, logout) => {
                     {MenuAdmin.map((item) => (
                         <li key={item.title} className="mx-3">
                             <Link to={item.link} className="text-[#C08D12] font-baloo">{item.title}</Link> {/* Utilisez Link au lieu de a */}
+                            <button 
+                            onClick={logout}
+                            className="p-4 text-white bg-[#C08D12] rounded-full font-baloo "
+                            >Se Déconnecter
+                            </button>
                         </li>
                     ))}
                 </ul>
@@ -59,10 +64,6 @@ const Navbar = (login, logout) => {
                             <Link to={item.link} className="text-[#C08D12] font-baloo">{item.title}</Link> {/* Utilisez Link au lieu de a */}
                         </li>
                     ))}
-                    <li>
-                       <button onClick={logout}
-                       className="p-4 text-white bg-[#C08D12] rounded-full font-baloo ">Se Déconnecter</button>
-                    </li>
                 </ul>
                 
             </div>
