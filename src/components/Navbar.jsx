@@ -14,8 +14,8 @@ const MenuAdmin = [
     { title: "Analyse", link: "/analyse" }
 ];
 
-const Navbar = ({ isLoggedIn, logout }) => {
-    if (isLoggedIn) {
+const Navbar = ({ login, logout }) => {
+    if (login) {
         return (
             <div className="mt-12 h-16 flex flex-col items-center justify-center z-60">
                 <img src={Logo} alt="Logo" className="h-48 w-64 mt-32" />
