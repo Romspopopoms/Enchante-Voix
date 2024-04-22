@@ -26,17 +26,14 @@ const MenuAdmin = [
         title: "Ajout d'articles",
         link: "/ajout-articles"
     },
-    {
-        title: "Deconnexion",
-        link: "/deconnexion"
-    },
+    
     {
         title: "Analyse",
         link: "/analyse"
     }
 ];
 
-const Navbar = (login) => {
+const Navbar = (login, logout) => {
         if (login)
             return (
                 <div className="mt-12 h-16 flex flex-col items-center justify-center z-60">
@@ -60,6 +57,7 @@ const Navbar = (login) => {
                     {Menu.map((item) => (
                         <li key={item.title} className="mx-3">
                             <Link to={item.link} className="text-[#C08D12] font-baloo">{item.title}</Link> {/* Utilisez Link au lieu de a */}
+                        <button onClick={logout}>Se Déconnecter</button>
                         </li>
                     ))}
                 </ul>
