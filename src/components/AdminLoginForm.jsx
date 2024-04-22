@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useAuth } from '../AuthContext';  // Assurez-vous que le chemin est correct
+import { useNavigate } from 'react-router-dom';
 
 const AdminLoginForm = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const { login } = useAuth();  // Utilisation de useAuth pour accéder à login
+    const navigate = useNavigate();  // Hook pour la navigation
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -20,6 +22,7 @@ const AdminLoginForm = () => {
             if (data.success) {
                 console.log('Connexion réussie');
                 login();  // Met à jour l'état global de connexion
+                navigate('/');  // Redirige vers la page d'accueil
             } else {
                 console.error('Échec de la connexion', data.message);
             }
