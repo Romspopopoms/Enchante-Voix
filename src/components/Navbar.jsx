@@ -17,6 +17,7 @@ const MenuAdmin = [
 
 const Navbar = () => {
     const { isLoggedIn, logout } = useAuth()
+    console.log("Navbar isLoggedIn:", isLoggedIn);
 
     if (isLoggedIn) {
         return (
@@ -30,7 +31,7 @@ const Navbar = () => {
                     ))}
                     <button 
                         onClick={logout}
-                        className="p-4 text-white bg-[#C08D12] rounded-full font-baloo"
+                        className="p-4 text-[#C08D12] rounded-full font-baloo"
                     >
                         Se Déconnecter
                     </button>
