@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useAuth } from '../AuthContext';  // Assurez-vous que le chemin est correct
 
 const AdminLoginForm = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const { login } = useAuth();  // Utilisation de useAuth pour accéder à login
 
-    const handleSubmit = async (event, login) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         try {
             const response = await fetch('/api/login', {
@@ -17,9 +19,7 @@ const AdminLoginForm = () => {
             const data = await response.json();
             if (data.success) {
                 console.log('Connexion réussie');
-                window.location.href = '/';
                 login();  // Met à jour l'état global de connexion
-
             } else {
                 console.error('Échec de la connexion', data.message);
             }
