@@ -57,10 +57,11 @@ const Navbar = (login, logout) => {
                     {Menu.map((item) => (
                         <li key={item.title} className="mx-3">
                             <Link to={item.link} className="text-[#C08D12] font-baloo">{item.title}</Link> {/* Utilisez Link au lieu de a */}
-                        <button onClick={logout}>Se Déconnecter</button>
                         </li>
                     ))}
+                       <button onClick={logout}>Se Déconnecter</button>
                 </ul>
+                
             </div>
         </div>
         }
