@@ -1,4 +1,5 @@
 import React from "react";
+import { useAuth } from "../AuthContext";
 import { Link } from 'react-router-dom';
 import Logo from "../assets/Frame 1.png";
 
@@ -14,8 +15,10 @@ const MenuAdmin = [
     { title: "Analyse", link: "/analyse" }
 ];
 
-const Navbar = ({ login, logout }) => {
-    if (login) {
+const Navbar = () => {
+    const { isLoggedIn, logout } = useAuth(); // Utilisez les valeurs du contexte
+
+    if (isLoggedIn) {
         return (
             <div className="mt-12 h-16 flex flex-col items-center justify-center z-60">
                 <img src={Logo} alt="Logo" className="h-48 w-64 mt-32" />
