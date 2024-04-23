@@ -8,10 +8,9 @@ const ArticlePage = () => {
     fetchArticles();
   }, [fetchArticles]);
 
-  // Fonction pour transformer l'URL YouTube en URL embed si valide
+  // Fonction pour extraire l'URL d'embed YouTube à partir de l'URL normale
   const getEmbedVideoUrl = (url) => {
-    if (!url) return null;
-    const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+    const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu.be\/)([a-zA-Z0-9_-]{11})/;
     const match = url.match(youtubeRegex);
     return match ? `https://www.youtube.com/embed/${match[1]}` : null;
   };
@@ -25,12 +24,10 @@ const ArticlePage = () => {
             <div key={index} className="bg-white p-4 rounded-lg shadow-lg flex flex-col items-center space-y-4">
               <h3 className='text-xl font-semibold'>{article.title}</h3>
               <p className='text-gray-700 text-center'>{article.description}</p>
-              
               {article.imageUrl && (
                 <img src={article.imageUrl} alt={article.title} className="max-h-40 w-auto object-cover rounded-md mt-2"/>
               )}
-
-              {article.videoUrl && getEmbedVideoUrl(article.videoUrl) && (
+              {article.videoUrl && (
                 <iframe 
                   width="100%" 
                   height="315" 
@@ -41,7 +38,6 @@ const ArticlePage = () => {
                   allowFullScreen
                 ></iframe>
               )}
-
               {article.link && (
                 <a href={article.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">En savoir plus</a>
               )}
