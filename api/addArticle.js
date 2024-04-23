@@ -21,7 +21,7 @@ export default async function handler(req, res) {
     }
 
     try {
-        const query = 'INSERT INTO articles (title, description, imageUrl, link) VALUES ($1, $2, $3, $4) RETURNING *';
+        const query = 'INSERT INTO articles (title, description, imageUrl,  link) VALUES ($1, $2, $3, $4) RETURNING *';
         const params = [title, description, imageUrl, link];
         const { rows } = await pool.query(query, params);
         console.log('Article added', rows[0]);
