@@ -7,6 +7,7 @@ const ArticleForm = () => {
         title: '',
         description: '',
         imageUrl: '',
+        videoUrl: '', // Ajoutez ceci pour gérer l'URL de la vidéo
         link: '',
     });
     const [submitted, setSubmitted] = useState(false);
@@ -40,8 +41,7 @@ const ArticleForm = () => {
       setLoading(true);
       try {
           await addArticle(article);
-          setArticle({ title: '', description: '', imageUrl: '', link: ''});
-          setSubmitted(true);
+          setArticle({ title: '', description: '', imageUrl: '', videoUrl: '', link: '' }); // Réinitialisez ceci également          setSubmitted(true);
           setTimeout(() => setSubmitted(false), 5000);
       } catch (error) {
           setError('Failed to create article: ' + error.message);
@@ -58,6 +58,7 @@ const ArticleForm = () => {
             <input type="text" name="title" value={article.title} onChange={handleChange} placeholder="Titre de l'article" className='h-10 w-full rounded-xl text-center shadow-black shadow-2xl' required />
             <textarea name="description" value={article.description} onChange={handleChange} placeholder="Description" className='h-40 w-full rounded-xl text-center shadow-black shadow-2xl' required />
             <input type="file" onChange={handleImageChange} disabled={loading} className='file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-yellow-600 hover:file:bg-violet-100'/>
+            <input type="text" name="videoUrl" value={article.videoUrl} onChange={handleChange} placeholder="Lien vidéo YouTube/Vimeo" className='h-10 w-full rounded-xl text-center shadow-black shadow-2xl' />
             <input type="text" name="link" value={article.link} onChange={handleChange} placeholder="Lien https://" className='h-10 w-full rounded-xl text-center shadow-black shadow-2xl' />
             <button type="submit" disabled={loading} className='h-10 w-full rounded-xl text-center bg-slate-300 hover:bg-red-200'>Créer l'article</button>
         </form>
