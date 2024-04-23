@@ -21,7 +21,7 @@ const App = () => {
     <AuthProvider>
       <ArticleProvider>
         <Router>
-          <div className="relative flex flex-col xl:gap-y-12 w-full">
+          <div className="flex flex-col xl:gap-y-12 w-full">
             <Navbar />
             <Routes>
               <Route path="/" element={<Home />} />
@@ -35,7 +35,7 @@ const App = () => {
 
               {/* Ajoutez d'autres routes selon vos besoins */}
             </Routes>
-            <Footer className="absolute bottom-0 w-full" />
+            <Footer />
             <SpeedInsights />
             <Analytics />
           </div>
