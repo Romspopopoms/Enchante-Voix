@@ -15,6 +15,7 @@ import Footer from './components/Footer';
 import ArticlePage from './pages/ArticlesPage';
 import AdminPage from './pages/AdminPage';
 import AnalysePage from './pages/AnalysePage';
+import AjoutDarticlesPages from './pages/AjoutD\'articlesPage';
 
 const App = () => {
   return (
@@ -30,7 +31,8 @@ const App = () => {
               <Route path="/a-propos" element={<APropos />} />
               <Route path="/admin" element={<AdminPage />} />
               <Route path="/Admin" element={<AdminPage />} />
-              <Route path="/ajout-articles" element={<ArticlePage />} />
+              <Route path="/articles" element={<ArticlePage />} />
+              <Route path="/ajout-articles" element={<AjoutDarticlesPages />} />
               <Route path="/analyse" element={<AnalysePage />} />
 
               {/* Ajoutez d'autres routes selon vos besoins */}

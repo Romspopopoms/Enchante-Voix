@@ -9,7 +9,7 @@ const ArticlePage = () => {
   const filteredArticles = articles.filter(article => article.category === categoryName);
 
   return (
-    <div className='flex flex-col bg-gradient-to-r from-blue-500 to-purple-600 min-h-screen p-10'>
+    <div className='flex flex-col min-h-screen p-10'>
       <h2 className='text-center text-3xl font-bold text-white mb-10'>{categoryName}</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {filteredArticles.length > 0 ? (
