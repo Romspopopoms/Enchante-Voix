@@ -33,16 +33,18 @@ export const ArticleProvider = ({ children }) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(article)
       });
-      const newArticle = await response.json();
       if (response.ok) {
+        const newArticle = await response.json();
         setArticles([...articles, newArticle]);
       } else {
-        throw new Error('Failed to add article');
+        const errorResponse = await response.text();  // Capture response as text if not JSON
+        throw new Error('Failed to add article: ' + errorResponse);
       }
     } catch (error) {
       console.error('Error adding article:', error);
     }
   };
+  
 
   return (
     <ArticleContext.Provider value={{ articles, addArticle, fetchArticles }}>
