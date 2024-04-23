@@ -1,3 +1,4 @@
+// ArticlePage.js
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useArticles } from '../ArticleContext';
@@ -15,13 +16,11 @@ const ArticlePage = () => {
         {filteredArticles.length > 0 ? (
           filteredArticles.map((article, index) => (
             <div key={index} className="bg-white p-4 rounded-lg shadow-lg flex flex-col items-center space-y-4">
-              {/* Titre et prix à côté l'un de l'autre */}
               <div className="flex flex-row justify-center items-baseline gap-2 w-full">
                 <h3 className='text-xl font-semibold'>{article.title}</h3>
                 <p className='text-lg font-bold'>{article.price} €</p>
               </div>
               <p className='text-gray-700 text-center'>{article.description}</p>
-              {/* Image en bas */}
               {article.imageUrl && (
                 <img src={article.imageUrl} alt={article.title} className="max-h-40 w-auto object-cover rounded-md mt-2"/>
               )}
