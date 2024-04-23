@@ -33,18 +33,20 @@ const AdminLoginForm = () => {
 
     return (
         <form onSubmit={handleSubmit}
-        className='h-auto w-auto flex flex-col bg-[rgb(252,251,250)] items-center justify-center gap-10 border-2 border-slate-700 rounded-md p-4 shadow-2xl shadow-black'>
-            <label>
+        className='h-auto w-auto flex flex-col bg-[rgb(252,251,250)] items-center justify-center gap-10 border-2 border-slate-700 rounded-md p-6 shadow-2xl shadow-black'>
+            <h1 className='font-baloo font-semibold text-4xl text-center mt-4 '>Connexion Admin</h1>
+            <label
+            className="gap-x-4">
                 Nom d'utilisateur:
                 <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
             </label>
-            <label>
+            <label className="gap-x-4">
                 Mot de passe:
                 <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
             </label>
             <button 
             type="submit"
-            className=''>Connexion</button>
+            className='py-2 px-4 bg-[#f2c14e] text-white rounded hover:bg-white hover:text-[#f2c14e] transition-colors duration-300'>Connexion</button>
         </form>
     );
 };
