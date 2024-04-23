@@ -33,20 +33,20 @@ const AdminLoginForm = () => {
 
     return (
         <form onSubmit={handleSubmit}
-        className='h-auto w-auto flex flex-col bg-[rgb(252,251,250)] items-center justify-center gap-10 border-2 border-slate-700 rounded-md py-6 px-12 shadow-2xl shadow-black mt-8'>
+        className='h-auto w-auto flex flex-col bg-[rgb(252,251,250)] items-center justify-center gap-6 border-2 border-slate-700 rounded-md py-6 px-12 shadow-2xl shadow-black mt-8'>
             <h1 className='font-baloo font-semibold text-4xl text-[#f2c14e] text-center mt-4 '>Connexion Admin</h1>
-            <div className="mt-4 text-center text-2xl font-medium font-baloo text-[#f2c14e] ">
+            <div className="text-center text-2xl font-medium font-baloo text-[#f2c14e] ">
                 Nom d'utilisateur
             </div>  
-                <input className="mt-4 border-2 rounded-lg border-black w-1/2" type="text" value={username} onChange={e => setUsername(e.target.value)} />
-            <div className="mt-4 text-center text-2xl font-medium font-baloo text-[#f2c14e] ">
+                <input className="border-2 rounded-lg border-black w-1/2" type="text" value={username} onChange={e => setUsername(e.target.value)} />
+            <div className="text-center text-2xl font-medium font-baloo text-[#f2c14e] ">
                 Mot de passe
             </div>   
-                <input className="mt-4 border-2 rounded-lg border-black w-1/2" type="password" value={password} onChange={e => setPassword(e.target.value)} />
+                <input className="border-2 rounded-lg border-black w-1/2" type="password" value={password} onChange={e => setPassword(e.target.value)} />
             
             <button 
             type="submit"
-            className='py-2 px-4 bg-[#f2c14e] text-white rounded hover:bg-white hover:text-[#f2c14e] transition-colors duration-300'>Connexion</button>
+            className='mt-4 py-2 px-4 bg-[#f2c14e] text-white rounded hover:bg-white hover:text-[#f2c14e] transition-colors duration-300'>Connexion</button>
         </form>
     );
 };
