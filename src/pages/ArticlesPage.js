@@ -8,13 +8,6 @@ const ArticlePage = () => {
     fetchArticles();
   }, [fetchArticles]);
 
-  // Fonction pour extraire l'URL d'embed YouTube à partir de l'URL normale
-  const getEmbedVideoUrl = (url) => {
-    const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu.be\/)([a-zA-Z0-9_-]{11})/;
-    const match = url.match(youtubeRegex);
-    return match ? `https://www.youtube.com/embed/${match[1]}` : null;
-  };
-
   return (
     <div className="flex flex-col items-center justify-center mt-40 xl:mt-36 gap-y-8">
       <h2 className='text-center text-3xl font-bold text-white mb-10'>Articles</h2>
@@ -31,7 +24,7 @@ const ArticlePage = () => {
                 <iframe 
                   width="100%" 
                   height="315" 
-                  src={getEmbedVideoUrl(article.videoUrl)} 
+                  src={article.videoUrl} 
                   title="YouTube video player" 
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

@@ -1,6 +1,5 @@
 import { Pool } from 'pg';
 
-// Ensure the POSTGRES_URL environment variable is set in Vercel
 const pool = new Pool({
     connectionString: process.env.POSTGRES_URL,
     ssl: {
@@ -10,24 +9,30 @@ const pool = new Pool({
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
-        console.log('Invalid method');
         return res.status(405).json({ message: "Method not allowed" });
     }
 
-    const { title, description, imageUrl, videoUrl, link } = req.body;
+    let { title, description, imageUrl, videoUrl, link } = req.body;
     if (!title || !description) {
-        console.log('Missing title or description', req.body);
         return res.status(400).json({ message: "Title and description are required" });
     }
+
+    // Convert YouTube URL to embed URL
+    videoUrl = convertToEmbedURL(videoUrl);
 
     try {
         const query = 'INSERT INTO articles (title, description, imageUrl, videoUrl, link) VALUES ($1, $2, $3, $4, $5) RETURNING *';
         const params = [title, description, imageUrl, videoUrl, link];
         const { rows } = await pool.query(query, params);
-        console.log('Article added', rows[0]);
         res.status(200).json(rows[0]);
     } catch (error) {
         console.error('Database error:', error);
         res.status(500).json({ message: "Internal server error" });
     }
+}
+
+function convertToEmbedURL(url) {
+    const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu.be\/)([a-zA-Z0-9_-]{11})/;
+    const match = url.match(youtubeRegex);
+    return match ? `https://www.youtube.com/embed/${match[1]}` : url;
 }
