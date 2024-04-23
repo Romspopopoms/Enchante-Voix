@@ -8,13 +8,13 @@ const ArticlePage = () => {
     fetchArticles();
   }, [fetchArticles]);
 
-  // Fonction pour transformer le lien YouTube en lien embed
   const getEmbedVideoUrl = (url) => {
-    if (!url) return null;
-    const regExp = /^.*(youtu.be\/|v\/|e\/|u\/\w+\/|embed\/|v=)([^#&?]*).*/;
-    const match = url.match(regExp);
-    return (match && match[2].length === 11) ? `https://www.youtube.com/embed/${match[2]}` : null;
+    const youtubeRegex = /^.*(youtu.be\/|v\/|u\/\w+\/|embed\/|watch\?v=|watch\?.+&v=)([^#\&\?]*).*/;
+    const match = url.match(youtubeRegex);
+    return match && match[2].length === 11 ? `https://www.youtube.com/embed/${match[2]}` : null;
   };
+  console.log(getEmbedVideoUrl(articles.videoUrl))
+
 
   return (
     <div className="flex flex-col items-center justify-center mt-40 xl:mt-36 gap-y-8">
@@ -33,12 +33,13 @@ const ArticlePage = () => {
                   width="100%" 
                   height="315" 
                   src={getEmbedVideoUrl(article.videoUrl)} 
-                  title={article.title} 
-                  frameBorder="0" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                  allowFullScreen 
-                />
+                  title="YouTube video player" 
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
               )}
+              
               {article.link && (
                 <a href={article.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">En savoir plus</a>
               )}
