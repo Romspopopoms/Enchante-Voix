@@ -1,44 +1,61 @@
 import React, { useState } from 'react';
-import { useArticles } from "../ArticleContext"; // Make sure this path is correct
+import { useArticles } from "../ArticleContext";
 
 const ArticleForm = () => {
     const { addArticle } = useArticles();
     const [article, setArticle] = useState({
         title: '',
         description: '',
-        imageUrl: '', // Initialize imageUrl here to be consistent
-        Link: '',
+        imageUrl: '',
+        link: '',
     });
     const [submitted, setSubmitted] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
 
     const handleChange = (e) => {
         setArticle({ ...article, [e.target.name]: e.target.value });
     };
 
-    const handleImageChange = (e) => {
+    const handleImageChange = async (e) => {
         if (e.target.files[0]) {
-            const imageUrl = URL.createObjectURL(e.target.files[0]);
-            setArticle({ ...article, imageUrl });
+            setLoading(true);
+            try {
+                const imageUrl = URL.createObjectURL(e.target.files[0]);
+                setArticle({ ...article, imageUrl });
+            } catch (error) {
+                setError("Failed to load image");
+            } finally {
+                setLoading(false);
+            }
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        addArticle(article);
-        setArticle({ title: '', description: '', imageUrl: '', Link: ''}); // Reset the form fields
-        setSubmitted(true);
-        setTimeout(() => setSubmitted(false), 5000); // Reset the submission indicator
+        setLoading(true);
+        try {
+            await addArticle(article);
+            setArticle({ title: '', description: '', imageUrl: '', link: ''});
+            setSubmitted(true);
+            setTimeout(() => setSubmitted(false), 5000);
+        } catch (error) {
+            setError('Failed to create article');
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center gap-10 border-2 border-slate-700 rounded-md p-4 shadow-2xl bg-transparent shadow-black h-auto w-1/2 mt-48 xl:mt-28">
-            {submitted && <p className="text-green-500">Article créé avec succès !</p>}
+        <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center gap-10 border-2 border-slate-700 rounded-md p-4 shadow-2xl bg-transparent shadow-black h-auto w-1/2">
+            {submitted && <p className="text-green-500">Article créé avec succès!</p>}
+            {error && <p className="text-red-500">{error}</p>}
             <h2 className="text-4xl text-center">Créer un article</h2>
-            <input type="text" name="title" value={article.title} onChange={handleChange} placeholder="Titre de l'article" className='h-10 w-40 rounded-xl text-center shadow-black shadow-2xl' required />
-            <textarea name="description" value={article.description} onChange={handleChange} placeholder="Description" className='h-10 w-40 rounded-xl text-center shadow-black shadow-2xl' required />
-            <input type="file" onChange={handleImageChange} className='file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-yellow-600 hover:file:bg-violet-100'/>
-            <input type="text" name="Link" value={article.Link} onChange={handleChange} placeholder="Lien https://" className='h-10 w-40 rounded-xl text-center shadow-black shadow-2xl' />
-            <button type="submit" className='h-10 w-40 rounded-xl text-center bg-slate-300 hover:bg-red-200'>Créer l'article</button>
+            <input type="text" name="title" value={article.title} onChange={handleChange} placeholder="Titre de l'article" className='h-10 w-full rounded-xl text-center shadow-black shadow-2xl' required />
+            <textarea name="description" value={article.description} onChange={handleChange} placeholder="Description" className='h-40 w-full rounded-xl text-center shadow-black shadow-2xl' required />
+            <input type="file" onChange={handleImageChange} disabled={loading} className='file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-yellow-600 hover:file:bg-violet-100'/>
+            <input type="text" name="link" value={article.link} onChange={handleChange} placeholder="Lien https://" className='h-10 w-full rounded-xl text-center shadow-black shadow-2xl' />
+            <button type="submit" disabled={loading} className='h-10 w-full rounded-xl text-center bg-slate-300 hover:bg-red-200'>Créer l'article</button>
         </form>
     );
 };

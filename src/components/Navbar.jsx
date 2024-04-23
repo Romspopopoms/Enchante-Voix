@@ -8,11 +8,11 @@ const Menu = [
     { title: "Activites", link: "/activites" },
     { title: "Tarifs", link: "/tarifs" },
     { title: "A propos", link: "/a-propos" },
+    { title: "News", link: "/articles" }
 ];
 
 const MenuAdmin = [
     { title: "Ajout d'articles", link: "/ajout-articles" },
-    { title: "News", link: "/articles" },
     { title: "Analyse", link: "/analyse" }
 ];
 
@@ -50,6 +50,11 @@ const Navbar = () => {
                 <img src={Logo} alt="Logo" className="h-48 w-64 mt-32" />
                 <ul className="flex items-center justify-center mt-10">
                     {Menu.map((item) => (
+                        <li key={item.title} className="mx-3">
+                            <Link to={item.link} className="text-[#C08D12] font-baloo">{item.title}</Link>
+                        </li>
+                    ))}
+                    {MenuAdmin.map((item) => (
                         <li key={item.title} className="mx-3">
                             <Link to={item.link} className="text-[#C08D12] font-baloo">{item.title}</Link>
                         </li>
