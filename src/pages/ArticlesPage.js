@@ -8,12 +8,12 @@ const ArticlePage = () => {
     fetchArticles();
   }, [fetchArticles]);
 
-  // Fonction pour extraire l'URL de l'embed YouTube
+  // Fonction pour transformer l'URL YouTube en URL embed si valide
   const getEmbedVideoUrl = (url) => {
-    if (!url) return null; // S'assure que l'URL est définie avant de procéder
-    const youtubeRegex = /^.*(youtu.be\/|v\/|u\/\w+\/|embed\/|watch\?v=|watch\?.+&v=)([^#&?]*).*/;
+    if (!url) return null;
+    const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
     const match = url.match(youtubeRegex);
-    return match && match[2].length === 11 ? `https://www.youtube.com/embed/${match[2]}` : null;
+    return match ? `https://www.youtube.com/embed/${match[1]}` : null;
   };
 
   return (
@@ -35,7 +35,7 @@ const ArticlePage = () => {
                   width="100%" 
                   height="315" 
                   src={getEmbedVideoUrl(article.videoUrl)} 
-                  title={article.title} 
+                  title="YouTube video player" 
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
