@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 
 const ArticleContext = createContext();
 
@@ -6,13 +6,8 @@ export const useArticles = () => useContext(ArticleContext);
 
 export const ArticleProvider = ({ children }) => {
   const [articles, setArticles] = useState([]);
-  
-  // Chargement initial des articles
-  useEffect(() => {
-    fetchArticles();
-  }, []);
 
-  const fetchArticles = async () => {
+  const fetchArticles = useCallback(async () => {
     try {
       const response = await fetch('/api/getArticles');
       const data = await response.json();
@@ -24,7 +19,11 @@ export const ArticleProvider = ({ children }) => {
     } catch (error) {
       console.error('Error fetching articles:', error);
     }
-  };
+  }, []); // Assurez-vous que les dépendances ici sont correctement configurées
+
+  useEffect(() => {
+    fetchArticles();
+  }, [fetchArticles]);
 
   const addArticle = async (article) => {
     try {
@@ -35,16 +34,15 @@ export const ArticleProvider = ({ children }) => {
       });
       if (response.ok) {
         const newArticle = await response.json();
-        setArticles([...articles, newArticle]);
+        setArticles(prev => [...prev, newArticle]); // Utilisez une fonction de mise à jour pour garantir l'intégrité de l'état
       } else {
-        const errorResponse = await response.text();  // Capture response as text if not JSON
+        const errorResponse = await response.text();
         throw new Error('Failed to add article: ' + errorResponse);
       }
     } catch (error) {
       console.error('Error adding article:', error);
     }
   };
-  
 
   return (
     <ArticleContext.Provider value={{ articles, addArticle, fetchArticles }}>

@@ -25,7 +25,7 @@ const ArticlePage = () => {
                   width="100%" 
                   height="315" 
                   src={article.videoUrl} 
-                  title="YouTube video player" 
+                  title="Embedded YouTube video" 
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
