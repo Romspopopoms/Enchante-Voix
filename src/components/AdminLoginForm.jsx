@@ -33,7 +33,7 @@ const AdminLoginForm = () => {
 
     return (
         <form onSubmit={handleSubmit}
-        className='h-auto w-auto flex flex-col bg-[rgb(252,251,250)]'>
+        className='h-auto w-auto flex flex-col bg-[rgb(252,251,250)] items-center justify-center gap-10 border-2 border-slate-700 rounded-md p-4 shadow-2xl shadow-black'>
             <label>
                 Nom d'utilisateur:
                 <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
@@ -42,7 +42,9 @@ const AdminLoginForm = () => {
                 Mot de passe:
                 <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
             </label>
-            <button type="submit">Connexion</button>
+            <button 
+            type="submit"
+            className=''>Connexion</button>
         </form>
     );
 };
