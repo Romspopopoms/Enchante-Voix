@@ -9,7 +9,7 @@ const ArticlePage = () => {
   }, [fetchArticles]);
 
   const getEmbedVideoUrl = (url) => {
-    const youtubeRegex = /^.*(youtu.be\/|v\/|u\/\w+\/|embed\/|watch\?v=|watch\?.+&v=)([^#\&\?]*).*/;
+    const youtubeRegex = /^.*(youtu.be\/|v\/|u\/\w+\/|embed\/|watch\?v=|watch\?.+&v=)([^#&?]*).*/;
     const match = url.match(youtubeRegex);
     return match && match[2].length === 11 ? `https://www.youtube.com/embed/${match[2]}` : null;
   };
