@@ -31,7 +31,7 @@ const ArticleForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center gap-10 border-2 border-slate-700 rounded-md p-4 shadow-2xl bg-transparent shadow-black h-auto mt-40 xl:mt-28">
+        <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center gap-10 border-2 border-slate-700 rounded-md p-4 shadow-2xl bg-transparent shadow-black h-auto w-1/2 mt-48 xl:mt-28">
             {submitted && <p className="text-green-500">Article créé avec succès !</p>}
             <h2 className="text-4xl text-center">Créer un article</h2>
             <input type="text" name="title" value={article.title} onChange={handleChange} placeholder="Titre de l'article" className='h-10 w-40 rounded-xl text-center shadow-black shadow-2xl' required />
