@@ -33,7 +33,7 @@ const AdminLoginForm = () => {
 
     return (
         <form onSubmit={handleSubmit}
-        className='h-auto w-auto flex flex-col bg-[rgb(252,251,250)] items-center justify-center gap-10 border-2 border-slate-700 rounded-md p-6 shadow-2xl shadow-black'>
+        className='h-auto w-auto flex flex-col bg-[rgb(252,251,250)] items-center justify-center gap-10 border-2 border-slate-700 rounded-md py-6 px-12 shadow-2xl shadow-black mt-8'>
             <h1 className='font-baloo font-semibold text-4xl text-center mt-4 '>Connexion Admin</h1>
             <label
             className="gap-x-4">
