@@ -14,6 +14,7 @@ import Footer from './components/Footer';
 
 import ArticlePage from './pages/ArticlesPage';
 import AdminPage from './pages/AdminPage';
+import AnalysePage from './pages/AnalysePage';
 
 const App = () => {
   return (
@@ -29,7 +30,9 @@ const App = () => {
               <Route path="/a-propos" element={<APropos />} />
               <Route path="/admin" element={<AdminPage />} />
               <Route path="/Admin" element={<AdminPage />} />
-              <Route path="/ArticlesPage" element={<ArticlePage />} />
+              <Route path="/ajout-articles" element={<ArticlePage />} />
+              <Route path="/analyse" element={<AnalysePage />} />
+
               {/* Ajoutez d'autres routes selon vos besoins */}
             </Routes>
             <Footer />

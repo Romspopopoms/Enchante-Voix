@@ -6,20 +6,12 @@ const ArticleForm = () => {
   const [article, setArticle] = useState({
     title: '',
     description: '',
-    category: '',
-    price: '',
-    imageUrl: '' // Ajout de l'URL de l'image
+    imageUrl: '',
+    VideoUrl: '' // Ajout de l'URL de l'image
 
   });
   const [submitted, setSubmitted] = useState(false); // État pour suivre si le formulaire a été soumis
 
-
-  const categories = [
-    { name: "Bracelets", value: "bracelets",  price: "20Euros"},
-    {  name: "Colliers", value: "colliers", price: "40Euros" },
-    { name: "Bagues", value: "bagues", price: "30Euros" },
-    { name: "Baguette", value: "baguette", price: "50Euros" },
-  ];
 
   const handleChange = (e) => {
     setArticle({ ...article, [e.target.name]: e.target.value });
@@ -27,14 +19,11 @@ const ArticleForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (article.category) {
+    {
       addArticle(article); // Utilise addArticle du contexte
-      setArticle({ title: '', description: '', category: '' }); // Réinitialiser le formulaire
+      setArticle({ title: '', description: '' }); // Réinitialiser le formulaire
       setSubmitted(true); // Mettre à jour l'état pour indiquer que le formulaire a été soumis
       setTimeout(() => setSubmitted(false), 5000); // Réinitialiser l'indicateur après quelques secondes
-    } else {
-      alert("Veuillez sélectionner une catégorie");
-    }
   };
   const handleImageChange = (e) => {
     if (e.target.files[0]) {

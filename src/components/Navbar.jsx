@@ -24,6 +24,11 @@ const Navbar = () => {
             <div className="mt-12 h-16 flex flex-col items-center justify-center z-60">
                 <img src={Logo} alt="Logo" className="h-48 w-64 mt-32" />
                 <ul className="flex items-center justify-center mt-10">
+                    {Menu.map((item) => (
+                        <li key={item.title} className="mx-3">
+                            <Link to={item.link} className="text-[#C08D12] font-baloo">{item.title}</Link>
+                        </li>
+                    ))}
                     {MenuAdmin.map((item) => (
                         <li key={item.title} className="mx-3">
                             <Link to={item.link} className="text-[#C08D12] font-baloo">{item.title}</Link>
