@@ -32,19 +32,23 @@ const ArticleForm = () => {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        setLoading(true);
-        try {
-            await addArticle(article);
-            setArticle({ title: '', description: '', imageUrl: '', link: ''});
-            setSubmitted(true);
-            setTimeout(() => setSubmitted(false), 5000);
-        } catch (error) {
-            setError('Failed to create article');
-        } finally {
-            setLoading(false);
-        }
-    };
+      e.preventDefault();
+      if (!article.title || !article.description) {
+          setError('Title and description are required');
+          return;
+      }
+      setLoading(true);
+      try {
+          await addArticle(article);
+          setArticle({ title: '', description: '', imageUrl: '', link: ''});
+          setSubmitted(true);
+          setTimeout(() => setSubmitted(false), 5000);
+      } catch (error) {
+          setError('Failed to create article: ' + error.message);
+      } finally {
+          setLoading(false);
+      }
+  };  
 
     return (
         <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center gap-10 border-2 border-slate-700 rounded-md p-4 shadow-2xl bg-transparent shadow-black h-auto w-1/2">
