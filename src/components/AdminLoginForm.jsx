@@ -32,7 +32,8 @@ const AdminLoginForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}
+        className='h-auto w-auto flex flex-col bg-[rgb(252,251,250)]'>
             <label>
                 Nom d'utilisateur:
                 <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
