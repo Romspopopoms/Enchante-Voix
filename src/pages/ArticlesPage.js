@@ -8,13 +8,13 @@ const ArticlePage = () => {
     fetchArticles();
   }, [fetchArticles]);
 
+  // Fonction pour extraire l'URL de l'embed YouTube
   const getEmbedVideoUrl = (url) => {
+    if (!url) return null; // S'assure que l'URL est définie avant de procéder
     const youtubeRegex = /^.*(youtu.be\/|v\/|u\/\w+\/|embed\/|watch\?v=|watch\?.+&v=)([^#&?]*).*/;
     const match = url.match(youtubeRegex);
     return match && match[2].length === 11 ? `https://www.youtube.com/embed/${match[2]}` : null;
   };
-  console.log(getEmbedVideoUrl(articles.videoUrl))
-
 
   return (
     <div className="flex flex-col items-center justify-center mt-40 xl:mt-36 gap-y-8">
@@ -25,21 +25,23 @@ const ArticlePage = () => {
             <div key={index} className="bg-white p-4 rounded-lg shadow-lg flex flex-col items-center space-y-4">
               <h3 className='text-xl font-semibold'>{article.title}</h3>
               <p className='text-gray-700 text-center'>{article.description}</p>
+              
               {article.imageUrl && (
                 <img src={article.imageUrl} alt={article.title} className="max-h-40 w-auto object-cover rounded-md mt-2"/>
               )}
-              {article.videoUrl && (
+
+              {article.videoUrl && getEmbedVideoUrl(article.videoUrl) && (
                 <iframe 
                   width="100%" 
                   height="315" 
                   src={getEmbedVideoUrl(article.videoUrl)} 
-                  title="YouTube video player" 
+                  title={article.title} 
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 ></iframe>
               )}
-              
+
               {article.link && (
                 <a href={article.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">En savoir plus</a>
               )}
