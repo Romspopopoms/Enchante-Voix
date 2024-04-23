@@ -12,6 +12,7 @@ const Menu = [
 
 const MenuAdmin = [
     { title: "Ajout d'articles", link: "/ajout-articles" },
+    { title: "News", link: "/articles" },
     { title: "Analyse", link: "/analyse" }
 ];
 
