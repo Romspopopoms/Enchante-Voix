@@ -18,7 +18,6 @@ const MenuAdmin = [
 
 const Navbar = () => {
     const { isLoggedIn, logout } = useAuth()
-    console.log("Navbar isLoggedIn:", isLoggedIn);
 
     if (isLoggedIn) {
         return (
@@ -50,11 +49,6 @@ const Navbar = () => {
                 <img src={Logo} alt="Logo" className="h-48 w-64 mt-32" />
                 <ul className="flex items-center justify-center mt-10">
                     {Menu.map((item) => (
-                        <li key={item.title} className="mx-3">
-                            <Link to={item.link} className="text-[#C08D12] font-baloo">{item.title}</Link>
-                        </li>
-                    ))}
-                    {MenuAdmin.map((item) => (
                         <li key={item.title} className="mx-3">
                             <Link to={item.link} className="text-[#C08D12] font-baloo">{item.title}</Link>
                         </li>
