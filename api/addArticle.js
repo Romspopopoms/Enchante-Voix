@@ -1,34 +1,34 @@
 import { put } from '@vercel/blob';
 import { Pool } from 'pg';
+import { parseMultipartData } from '@vercel/fetch'; // Cette fonction aide à gérer multipart/form-data
 
 const pool = new Pool({
     connectionString: process.env.POSTGRES_URL,
     ssl: { rejectUnauthorized: false }
 });
 
-function convertToEmbedURL(url) {
-    const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?(youtube\.com\/watch\?v=|youtu.be\/)([a-zA-Z0-9_-]{11})/;
-    const match = url.match(youtubeRegex);
-    return match ? `https://www.youtube.com/embed/${match[2]}` : url;
-}
-
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
         return res.status(405).json({ message: 'Method not allowed' });
     }
 
-    // Assumer que la requête est déjà en format FormData et que le middleware s'en charge
-    const data = req.body;
-    const { title, description, videoUrl, link } = data;
+    // Parse multipart/form-data
+    const { fields, files } = await parseMultipartData(req);
+    if (!fields || !files) {
+        return res.status(400).json({ message: 'Invalid request' });
+    }
+
+    const { title, description, videoUrl, link } = fields;
+    let imageUrl = '';
 
     try {
-        let imageUrl = '';
-        if (data.imageFile) {
-            const file = data.imageFile; // Assurez-vous que cette partie est bien configurée pour traiter le fichier
-            const { url } = await put(`articles/${Date.now()}-${file.name}`, file, { access: 'public' });
+        // Handling file upload
+        if (files.imageFile) {
+            const file = files.imageFile[0]; // Accéder au fichier
+            const { url } = await put(`articles/${Date.now()}-${file.originalFilename}`, file.data, { access: 'public' });
             imageUrl = url;
         }
-        
+
         const embedUrl = convertToEmbedURL(videoUrl);
         const query = 'INSERT INTO articles (title, description, imageUrl, videoUrl, link) VALUES ($1, $2, $3, $4, $5) RETURNING *';
         const params = [title, description, imageUrl, embedUrl, link];
@@ -38,4 +38,10 @@ export default async function handler(req, res) {
         console.error('Database error:', error);
         res.status(500).json({ message: "Internal server error" });
     }
+}
+
+function convertToEmbedURL(url) {
+    const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?(youtube\.com\/watch\?v=|youtu.be\/)([a-zA-Z0-9_-]{11})/;
+    const match = url.match(youtubeRegex);
+    return match ? `https://www.youtube.com/embed/${match[2]}` : url;
 }
