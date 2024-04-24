@@ -1,10 +1,9 @@
 import { Pool } from 'pg';
+import { put } from '@vercel/blob';  // Assurez-vous que ce module est bien importé
 
 const pool = new Pool({
     connectionString: process.env.POSTGRES_URL,
-    ssl: {
-        rejectUnauthorized: false  // Necessary if the database uses SSL
-    }
+    ssl: { rejectUnauthorized: false }
 });
 
 export default async function handler(req, res) {
@@ -12,13 +11,22 @@ export default async function handler(req, res) {
         return res.status(405).json({ message: "Method not allowed" });
     }
 
-    let { title, description, imageUrl, videoUrl, link } = req.body;
-    if (!title || !description) {
-        return res.status(400).json({ message: "Title and description are required" });
-    }
+    let { title, description, imageFile, videoUrl, link } = req.body;
+    let imageUrl = "";  // Initialisation de imageUrl
 
     // Convert YouTube URL to embed URL
     videoUrl = convertToEmbedURL(videoUrl);
+
+    // Handle image upload
+    if (imageFile) {
+        try {
+            const { url } = await put(`articles/${Date.now()}-${imageFile.name}`, imageFile, { access: 'public' });
+            imageUrl = url;
+        } catch (error) {
+            console.error('Failed to upload image:', error);
+            return res.status(500).json({ message: "Failed to upload image" });
+        }
+    }
 
     try {
         const query = 'INSERT INTO articles (title, description, imageUrl, videoUrl, link) VALUES ($1, $2, $3, $4, $5) RETURNING *';

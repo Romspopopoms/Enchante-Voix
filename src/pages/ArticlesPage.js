@@ -7,7 +7,6 @@ const ArticlePage = () => {
   useEffect(() => {
     fetchArticles();  // Direct fetch without the console.log for cleaner code
   }, [fetchArticles]);
-  console.log(fetchArticles);
 
   // Create a responsive container for YouTube videos
   const VideoContainer = ({ src, title }) => (
@@ -24,7 +23,7 @@ const ArticlePage = () => {
   );
 
   return (
-    <div className="flex flex-col items-center justify-center mt-40 xl:mt-32 gap-y-8">
+    <div className="flex flex-col items-center justify-center mt-10 xl:mt-20 gap-y-8">
       <h2 className='text-center text-3xl font-bold text-[#c6941A] mb-5'>Articles</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
         {articles.length > 0 ? (
@@ -36,7 +35,7 @@ const ArticlePage = () => {
                 <img src={article.imageUrl} alt={article.title} className="max-h-40 w-full object-cover rounded-md"/>
               )}
               {article.videoUrl && (
-                <VideoContainer src={article.videoUrl} title="Embedded YouTube video" />
+                <VideoContainer src={article.videoUrl} title={`Embedded YouTube video: ${article.title}`} />
               )}
               {article.link && (
                 <a href={article.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">En savoir plus</a>
