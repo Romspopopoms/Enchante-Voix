@@ -6,10 +6,10 @@ const ArticleForm = () => {
     const [article, setArticle] = useState({
         title: '',
         description: '',
-        imageUrl: '',
-        videoUrl: '', // Ajoutez ceci pour gérer l'URL de la vidéo
-        link: '',
+        videoUrl: '',
+        link: ''
     });
+    const [imageFile, setImageFile] = useState(null);
     const [submitted, setSubmitted] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
@@ -19,38 +19,40 @@ const ArticleForm = () => {
     };
 
     const handleImageChange = (e) => {
-      if (e.target.files[0]) {
-        setArticle({ ...article, imageFile: e.target.files[0] });
-      }
+        if (e.target.files[0]) {
+            setImageFile(e.target.files[0]);
+        }
     };
+
     const handleSubmit = async (e) => {
-      e.preventDefault();
-      if (!article.title || !article.description) {
-        setError('Title and description are required');
-        return;
-      }
-      const formData = new FormData();
-      formData.append('title', article.title);
-      formData.append('description', article.description);
-      if (article.imageFile) {
-        formData.append('imageFile', article.imageFile);
-      }
-      formData.append('videoUrl', article.videoUrl);
-      formData.append('link', article.link);
-    
-      setLoading(true);
-      try {
-        await addArticle(formData);
-        setArticle({ title: '', description: '', imageFile: null, videoUrl: '', link: '' });
-        setSubmitted(true);
-        setTimeout(() => setSubmitted(false), 5000);
-      } catch (error) {
-        setError('Failed to create article: ' + error.message);
-      } finally {
-        setLoading(false);
-      }
+        e.preventDefault();
+        if (!article.title || !article.description) {
+            setError('Le titre et la description sont requis.');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('title', article.title);
+        formData.append('description', article.description);
+        if (imageFile) {
+            formData.append('imageFile', imageFile);
+        }
+        formData.append('videoUrl', article.videoUrl);
+        formData.append('link', article.link);
+
+        setLoading(true);
+        try {
+            await addArticle(formData);
+            setArticle({ title: '', description: '', videoUrl: '', link: '' });
+            setImageFile(null);
+            setSubmitted(true);
+            setTimeout(() => setSubmitted(false), 5000);
+        } catch (error) {
+            setError('Échec de la création de l\'article: ' + error.message);
+        } finally {
+            setLoading(false);
+        }
     };
-    
 
     return (
         <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center gap-10 border-2 border-slate-700 rounded-md p-4 bg-transparent shadow-black h-auto w-1/2" encType="multipart/form-data">

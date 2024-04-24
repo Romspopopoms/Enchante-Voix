@@ -1,6 +1,5 @@
-const Busboy = require('busboy');
-const { Pool } = require('pg');
-const { put } = require('@vercel/blob');
+import { put } from '@vercel/blob';
+import { Pool } from 'pg';
 
 const pool = new Pool({
     connectionString: process.env.POSTGRES_URL,
@@ -8,63 +7,31 @@ const pool = new Pool({
 });
 
 function convertToEmbedURL(url) {
-    const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu.be\/)([a-zA-Z0-9_-]{11})/;
+    const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?(youtube\.com\/watch\?v=|youtu.be\/)([a-zA-Z0-9_-]{11})/;
     const match = url.match(youtubeRegex);
-    return match ? `https://www.youtube.com/embed/${match[1]}` : url;
+    return match ? `https://www.youtube.com/embed/${match[2]}` : url;
 }
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
-        return res.status(405).end('Method not allowed');
+        return res.status(405).json({ message: 'Method not allowed' });
     }
 
-    if (!req.headers['content-type'] || !req.headers['content-type'].includes('multipart/form-data')) {
-        return res.status(400).end('Content-Type should be multipart/form-data');
-    }
-
-    const busboy = new Busboy({ headers: req.headers });
-    let data = {
-        title: '',
-        description: '',
-        videoUrl: '',
-        link: '',
-        imageUrl: ''
-    };
-
-    await new Promise((resolve, reject) => {
-        busboy.on('file', async (fieldname, file, filename) => {
-            if (fieldname === 'imageFile') {
-                try {
-                    const { url } = await put(`articles/${Date.now()}-${filename}`, file, { access: 'public' });
-                    data.imageUrl = url;
-                    resolve(); // Resolve the promise once the file is handled
-                } catch (error) {
-                    console.error('Failed to upload image:', error);
-                    file.resume();
-                    reject(error);
-                }
-            } else {
-                file.resume();
-            }
-        });
-
-        busboy.on('field', (fieldname, val) => {
-            if (data.hasOwnProperty(fieldname)) {
-                data[fieldname] = val;
-            }
-        });
-
-        busboy.on('finish', () => {
-            resolve();
-        });
-
-        req.pipe(busboy);
-    });
+    // Assumer que la requête est déjà en format FormData et que le middleware s'en charge
+    const data = req.body;
+    const { title, description, videoUrl, link } = data;
 
     try {
-        data.videoUrl = convertToEmbedURL(data.videoUrl);
+        let imageUrl = '';
+        if (data.imageFile) {
+            const file = data.imageFile; // Assurez-vous que cette partie est bien configurée pour traiter le fichier
+            const { url } = await put(`articles/${Date.now()}-${file.name}`, file, { access: 'public' });
+            imageUrl = url;
+        }
+        
+        const embedUrl = convertToEmbedURL(videoUrl);
         const query = 'INSERT INTO articles (title, description, imageUrl, videoUrl, link) VALUES ($1, $2, $3, $4, $5) RETURNING *';
-        const params = [data.title, data.description, data.imageUrl, data.videoUrl, data.link];
+        const params = [title, description, imageUrl, embedUrl, link];
         const { rows } = await pool.query(query, params);
         res.status(200).json(rows[0]);
     } catch (error) {

@@ -8,7 +8,7 @@ const ArticlePage = () => {
     if (articles.length === 0) {
       fetchArticles();
     }
-  }, [articles.length, fetchArticles]);
+  }, [articles.length, fetchArticles]);  // Dépendance ajoutée pour suivre les changements correctement
 
   const VideoContainer = ({ src, title }) => (
     <div className="aspect-w-16 aspect-h-9 w-full overflow-hidden rounded-lg shadow-lg">
@@ -24,7 +24,7 @@ const ArticlePage = () => {
   );
 
   return (
-    <div className="flex flex-col items-center justify-center mt-40 xl:mt-32 gap-y-8">
+    <div className="flex flex-col items-center justify-center mt-10 xl:mt-20 gap-y-8">
       <h2 className='text-center text-3xl font-bold text-[#c6941A] mb-5'>Articles</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
         {articles.length > 0 ? (
