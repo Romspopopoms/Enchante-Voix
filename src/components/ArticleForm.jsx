@@ -51,7 +51,7 @@ const ArticleForm = () => {
   };  
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center gap-10 border-2 border-slate-700 rounded-md p-4 bg-transparent shadow-black h-auto w-1/2">
+        <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center gap-10 border-2 border-slate-700 rounded-md p-4 bg-transparent shadow-black h-auto w-1/2" encType="multipart/form-data">
             {submitted && <p className="text-green-500">Article créé avec succès!</p>}
             {error && <p className="text-red-500">{error}</p>}
             <h2 className="text-4xl text-center">Créer un article</h2>
