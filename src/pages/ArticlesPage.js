@@ -5,13 +5,11 @@ const ArticlePage = () => {
   const { articles, fetchArticles } = useArticles();
 
   useEffect(() => {
-    // Appel de fetchArticles seulement si articles est vide pour éviter des appels inutiles
     if (articles.length === 0) {
       fetchArticles();
     }
   }, [articles.length, fetchArticles]);
 
-  // Component pour contenir les vidéos de manière responsive
   const VideoContainer = ({ src, title }) => (
     <div className="aspect-w-16 aspect-h-9 w-full overflow-hidden rounded-lg shadow-lg">
       <iframe
