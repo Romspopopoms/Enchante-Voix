@@ -1,6 +1,6 @@
 import { Pool } from 'pg';
 import { put } from '@vercel/blob';
-import Busboy from 'busboy'; // Assurez-vous que 'busboy' est correctement importé
+const Busboy = require('busboy');
 
 // Configuration de la connexion à la base de données
 const pool = new Pool({
