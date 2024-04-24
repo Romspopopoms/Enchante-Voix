@@ -5,10 +5,13 @@ const ArticlePage = () => {
   const { articles, fetchArticles } = useArticles();
 
   useEffect(() => {
-    fetchArticles();  // Direct fetch without the console.log for cleaner code
-  }, [fetchArticles]);
+    // Appel de fetchArticles seulement si articles est vide pour éviter des appels inutiles
+    if (articles.length === 0) {
+      fetchArticles();
+    }
+  }, [articles.length, fetchArticles]);
 
-  // Create a responsive container for YouTube videos
+  // Component pour contenir les vidéos de manière responsive
   const VideoContainer = ({ src, title }) => (
     <div className="aspect-w-16 aspect-h-9 w-full overflow-hidden rounded-lg shadow-lg">
       <iframe
@@ -23,7 +26,7 @@ const ArticlePage = () => {
   );
 
   return (
-    <div className="flex flex-col items-center justify-center mt-10 xl:mt-20 gap-y-8">
+    <div className="flex flex-col items-center justify-center mt-40 xl:mt-32 gap-y-8">
       <h2 className='text-center text-3xl font-bold text-[#c6941A] mb-5'>Articles</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
         {articles.length > 0 ? (
