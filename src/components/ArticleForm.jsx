@@ -18,37 +18,39 @@ const ArticleForm = () => {
         setArticle({ ...article, [e.target.name]: e.target.value });
     };
 
-    const handleImageChange = async (e) => {
-        if (e.target.files[0]) {
-            setLoading(true);
-            try {
-                const imageUrl = URL.createObjectURL(e.target.files[0]);
-                setArticle({ ...article, imageUrl });
-            } catch (error) {
-                setError("Failed to load image");
-            } finally {
-                setLoading(false);
-            }
-        }
+    const handleImageChange = (e) => {
+      if (e.target.files[0]) {
+        setArticle({ ...article, imageFile: e.target.files[0] });
+      }
     };
-
     const handleSubmit = async (e) => {
       e.preventDefault();
       if (!article.title || !article.description) {
-          setError('Title and description are required');
-          return;
+        setError('Title and description are required');
+        return;
       }
+      const formData = new FormData();
+      formData.append('title', article.title);
+      formData.append('description', article.description);
+      if (article.imageFile) {
+        formData.append('imageFile', article.imageFile);
+      }
+      formData.append('videoUrl', article.videoUrl);
+      formData.append('link', article.link);
+    
       setLoading(true);
       try {
-          await addArticle(article);
-          setArticle({ title: '', description: '', imageUrl: '', videoUrl: '', link: '' }); // Réinitialisez ceci également          setSubmitted(true);
-          setTimeout(() => setSubmitted(false), 5000);
+        await addArticle(formData);
+        setArticle({ title: '', description: '', imageFile: null, videoUrl: '', link: '' });
+        setSubmitted(true);
+        setTimeout(() => setSubmitted(false), 5000);
       } catch (error) {
-          setError('Failed to create article: ' + error.message);
+        setError('Failed to create article: ' + error.message);
       } finally {
-          setLoading(false);
+        setLoading(false);
       }
-  };  
+    };
+    
 
     return (
         <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center gap-10 border-2 border-slate-700 rounded-md p-4 bg-transparent shadow-black h-auto w-1/2" encType="multipart/form-data">
