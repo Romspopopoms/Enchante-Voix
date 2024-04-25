@@ -26,7 +26,7 @@ export const ArticleProvider = ({ children }) => {
     }, []);
 
     const addArticle = async (article) => {
-        alert('je vais envoyer l'article : ArticleCOntext');
+        alert('je vais envoyer article : ArticleCOntext');
         try {
             const formData = new FormData();
             formData.append('title', article.title);
@@ -53,7 +53,7 @@ export const ArticleProvider = ({ children }) => {
             console.error('Error adding article:', error);
             alert('Error adding article');
         }
-        alert('je vais envoyer l'article : ArticleCOntext fin');
+        alert('je vais envoyer article : ArticleCOntext fin');
     };
 
     return (
