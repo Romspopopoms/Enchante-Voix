@@ -41,8 +41,8 @@ export const ArticleProvider = ({ children }) => {
             formData.append('videoUrl', article.videoUrl);
             formData.append('link', article.link);
 
-            const response = await fetch('/api/addArticle/handler', {
-                method: 'POST',
+            const response = await fetch('/api/addArticle', {
+                method: 'handler',
                 body: formData,
             });
 
