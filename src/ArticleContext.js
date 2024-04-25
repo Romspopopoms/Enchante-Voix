@@ -45,9 +45,11 @@ export const ArticleProvider = ({ children }) => {
             alert('je vais envoyer article : ArticleCOntext : api/addArticle');
 
             if (response.ok) {
+                alert('je vais envoyer article : ArticleCOntext : if ok');
                 const newArticle = await response.json();
                 setArticles(prev => [...prev, newArticle]);
             } else {
+                alert('je vais envoyer article : ArticleCOntext : if ko');
                 const errorResponse = await response.text();
                 throw new Error('Failed to add article: ' + errorResponse);
             }
