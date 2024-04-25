@@ -26,7 +26,6 @@ export const ArticleProvider = ({ children }) => {
     }, []);
 
     const addArticle = async (article) => {
-        alert('je vais envoyer article : ArticleCOntext');
         alert(article.get('title'));
         alert(article.get('description'));
         alert(article.get('imageFile'));
@@ -41,29 +40,23 @@ export const ArticleProvider = ({ children }) => {
             }
             formData.append('videoUrl', article.videoUrl);
             formData.append('link', article.link);
-            alert('je vais envoyer article : ArticleCOntext : formData.append');
 
             const response = await fetch('/api/addArticle/handler', {
                 method: 'POST',
                 body: formData,
             });
-            alert('je vais envoyer article : ArticleCOntext : api/addArticle');
 
             if (response.ok) {
-                alert('je vais envoyer article : ArticleCOntext : if ok');
                 const newArticle = await response.json();
                 setArticles(prev => [...prev, newArticle]);
             } else {
-                alert('je vais envoyer article : ArticleCOntext : if ko');
                 const errorResponse = await response.text();
                 throw new Error('Failed to add article: ' + errorResponse);
             }
-            alert('je vais envoyer article : ArticleCOntext : if');
         } catch (error) {
             console.error('Error adding article:', error);
             alert('Error adding article');
         }
-        alert('je vais envoyer article : ArticleCOntext fin');
     };
 
     return (
