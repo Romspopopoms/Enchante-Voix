@@ -32,16 +32,19 @@ const ArticleForm = () => {
         }
 
         const formData = new FormData(e.target);
-
-        /*formData.append('title', article.title);
+        formData.append('title', article.title);
         formData.append('description', article.description);
         if (imageFile) {
             formData.append('imageFile', imageFile);
         }
         formData.append('videoUrl', article.videoUrl);
-        formData.append('link', article.link);*/
-        const fichier = formData.get('Uploadfile');
-        alert(fichier);
+        formData.append('link', article.link);
+
+        alert(formData.get('title'));
+        alert(formData.get('description'));
+        alert(formData.get('imageFile'));
+        alert(formData.get('videoUrl'));
+        alert(formData.get('link'));
 
         setLoading(true);
         try {
