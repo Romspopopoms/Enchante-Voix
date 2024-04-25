@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { put } from '@vercel/blob';
 
 const ArticleContext = createContext();
 
@@ -37,16 +36,11 @@ export const ArticleProvider = ({ children }) => {
             formData.append('videoUrl', article.videoUrl);
             formData.append('link', article.link);
 
-            /*const response = await fetch('/api/addArticle/handler', {
-                method: 'POST',
+            const response = await fetch('/api', {
+                method: 'AddArticle',
                 body: formData,
-            });*/
-            const file = article.get('imageFile');
-            const filename = file.name;
-
-            const url = await put(filename, file, { access: 'public' });
-            alert(url);
-
+            });
+            
             if (response.ok) {
                 const newArticle = await response.json();
                 setArticles(prev => [...prev, newArticle]);
