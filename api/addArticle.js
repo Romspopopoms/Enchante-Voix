@@ -7,8 +7,8 @@ const pool = new Pool({
     ssl: { rejectUnauthorized: false }
 });
 
-export default async function handler(req, res) {
-    alert('je suis dans api de addarticle : handler');
+export async function AddArticle(req, res) {
+    alert('je suis dans api de addarticle');
     if (req.method !== 'POST') {
         return res.status(405).json({ message: 'Method not allowed' });
     }
