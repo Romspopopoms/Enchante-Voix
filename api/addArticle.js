@@ -8,6 +8,7 @@ const pool = new Pool({
 });
 
 export default async function handler(req, res) {
+    alert('je suis dans api de addarticle : handler');
     if (req.method !== 'POST') {
         return res.status(405).json({ message: 'Method not allowed' });
     }
@@ -41,6 +42,7 @@ export default async function handler(req, res) {
 }
 
 function convertToEmbedURL(url) {
+    alert('je suis dans api de addarticle : convertToEmbedURL');
     const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?(youtube\.com\/watch\?v=|youtu.be\/)([a-zA-Z0-9_-]{11})/;
     const match = url.match(youtubeRegex);
     return match ? `https://www.youtube.com/embed/${match[2]}` : url;
