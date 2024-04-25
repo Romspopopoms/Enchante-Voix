@@ -41,10 +41,10 @@ export const ArticleProvider = ({ children }) => {
                 method: 'POST',
                 body: formData,
             });*/
-            const file = formData.get('imageFile');
+            const file = article.get('imageFile');
             const filename = file.name;
 
-            const url = await put(file, filename, { access: 'public' });
+            const url = await put(filename, file, { access: 'public' });
             alert(url);
 
             if (response.ok) {
