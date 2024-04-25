@@ -27,6 +27,11 @@ export const ArticleProvider = ({ children }) => {
 
     const addArticle = async (article) => {
         alert('je vais envoyer article : ArticleCOntext');
+        alert(article.get('title'));
+        alert(article.get('description'));
+        alert(article.get('imageFile'));
+        alert(article.get('videoUrl'));
+        alert(article.get('link'));
         try {
             const formData = new FormData();
             formData.append('title', article.title);
