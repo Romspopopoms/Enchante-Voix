@@ -38,7 +38,7 @@ export const ArticleProvider = ({ children }) => {
             formData.append('link', article.link);
             alert('je vais envoyer article : ArticleCOntext : formData.append');
 
-            const response = await fetch('/api/addArticle', {
+            const response = await fetch('/api/addArticle/handler', {
                 method: 'POST',
                 body: formData,
             });
