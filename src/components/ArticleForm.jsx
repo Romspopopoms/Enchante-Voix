@@ -40,12 +40,6 @@ const ArticleForm = () => {
         formData.append('videoUrl', article.videoUrl);
         formData.append('link', article.link);
 
-        alert(formData.get('title'));
-        alert(formData.get('description'));
-        alert(formData.get('imageFile'));
-        alert(formData.get('videoUrl'));
-        alert(formData.get('link'));
-
         setLoading(true);
         try {
             await addArticle(formData);
