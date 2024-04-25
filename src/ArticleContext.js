@@ -26,11 +26,6 @@ export const ArticleProvider = ({ children }) => {
     }, []);
 
     const addArticle = async (article) => {
-        alert(article.get('title'));
-        alert(article.get('description'));
-        alert(article.get('imageFile'));
-        alert(article.get('videoUrl'));
-        alert(article.get('link'));
         try {
             const formData = new FormData();
             formData.append('title', article.title);
@@ -41,10 +36,15 @@ export const ArticleProvider = ({ children }) => {
             formData.append('videoUrl', article.videoUrl);
             formData.append('link', article.link);
 
-            const response = await fetch('/api/addArticle', {
-                method: 'handler',
+            /*const response = await fetch('/api/addArticle/handler', {
+                method: 'POST',
                 body: formData,
-            });
+            });*/
+            const file = formData.get('imageFile');
+            const filename = file.name;
+
+            const url = await put(file, filename, { access: 'public' });
+            alert(url);
 
             if (response.ok) {
                 const newArticle = await response.json();
@@ -55,7 +55,6 @@ export const ArticleProvider = ({ children }) => {
             }
         } catch (error) {
             console.error('Error adding article:', error);
-            alert('Error adding article');
         }
     };
 
