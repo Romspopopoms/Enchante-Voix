@@ -43,7 +43,6 @@ export const ArticleProvider = ({ children }) => {
             });*/
             fetch('/api', {
               method: 'POST',
-              headers: { 'content-type': file?.type || 'application/octet-stream' },
               body: article.imageFile,
             });
             alert('end test avec fetch');
