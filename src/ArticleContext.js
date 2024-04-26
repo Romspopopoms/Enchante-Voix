@@ -37,9 +37,14 @@ export const ArticleProvider = ({ children }) => {
             formData.append('link', article.link);
 
             alert('test avec fetch');
-            const response = await fetch('/api', {
+            /*const response = await fetch('/api', {
                 method: 'AddArticle',
                 body: formData,
+            });*/
+            fetch('/api', {
+              method: 'POST',
+              headers: { 'content-type': file?.type || 'application/octet-stream' },
+              body: article.imageFile,
             });
             alert('end test avec fetch');
             
