@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { AddArticle } from "../addArticle";
 
 const ArticleContext = createContext();
 
@@ -37,10 +36,6 @@ export const ArticleProvider = ({ children }) => {
             formData.append('videoUrl', article.videoUrl);
             formData.append('link', article.link);
 
-            alert('test appel direct');
-            AddArticle(formData)
-            alert('end test appel direct');
-            
             alert('test avec fetch');
             const response = await fetch('/api', {
                 method: 'AddArticle',
