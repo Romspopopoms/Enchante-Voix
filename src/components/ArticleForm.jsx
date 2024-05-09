@@ -31,7 +31,7 @@ const ArticleForm = () => {
             return;
         }
 
-        const formData = new FormData();
+        const formData = new FormData(e.target);
         formData.append('title', article.title);
         formData.append('description', article.description);
         if (imageFile) {

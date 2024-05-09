@@ -39,11 +39,17 @@ export const ArticleProvider = ({ children }) => {
             formData.append('videoUrl', article.videoUrl);
             formData.append('link', article.link);
 
-            const response = await fetch('/api/addArticle', {
-                method: 'POST',
+            alert('test avec fetch');
+            /*const response = await fetch('/api', {
+                method: 'AddArticle',
                 body: formData,
+            });*/
+            fetch('/api', {
+              method: 'POST',
+              body: article.imageFile,
             });
-
+            alert('end test avec fetch');
+            
             if (response.ok) {
                 const newArticle = await response.json();
                 setArticles(prev => [...prev, newArticle]);
