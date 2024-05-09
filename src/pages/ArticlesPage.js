@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useArticles } from '../ArticleContext';
 
 const ArticlePage = () => {
-  const { articles, fetchArticles } = useArticles();
+  const { articles, fetchArticles } = useArticles(); // Utilisation de fetchArticles défini dans ArticleContext
 
   useEffect(() => {
     if (articles.length === 0) {
@@ -24,7 +24,7 @@ const ArticlePage = () => {
   );
 
   return (
-    <div className="flex flex-col items-center justify-center mt-10 xl:mt-20 gap-y-8">
+    <div className="flex flex-col items-center justify-center mt-40 xl:mt-28 gap-y-8">
       <h2 className='text-center text-3xl font-bold text-[#c6941A] mb-5'>Articles</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
         {articles.length > 0 ? (

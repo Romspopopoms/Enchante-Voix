@@ -6,8 +6,11 @@ export const useArticles = () => useContext(ArticleContext);
 
 export const ArticleProvider = ({ children }) => {
     const [articles, setArticles] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     const fetchArticles = async () => {
+        setLoading(true); // Définir loading à true avant de commencer la requête
         try {
             const response = await fetch('/api/getArticles');
             if (response.ok) {
@@ -18,14 +21,14 @@ export const ArticleProvider = ({ children }) => {
             }
         } catch (error) {
             console.error('Error fetching articles:', error);
+            setError(error);
+        } finally {
+            setLoading(false); // Définir loading à false après la requête, qu'elle ait réussi ou échoué
         }
     };
 
-    useEffect(() => {
-        fetchArticles();
-    }, []);
-
     const addArticle = async (article) => {
+        setLoading(true); // Définir loading à true avant de commencer la requête
         try {
             const formData = new FormData();
             formData.append('title', article.title);
@@ -50,11 +53,18 @@ export const ArticleProvider = ({ children }) => {
             }
         } catch (error) {
             console.error('Error adding article:', error);
+            setError(error);
+        } finally {
+            setLoading(false); // Définir loading à false après la requête, qu'elle ait réussi ou échoué
         }
     };
 
+    useEffect(() => {
+        fetchArticles();
+    }, []);
+
     return (
-        <ArticleContext.Provider value={{ articles, addArticle, fetchArticles }}>
+        <ArticleContext.Provider value={{ articles, addArticle, fetchArticles, loading, error }}>
             {children}
         </ArticleContext.Provider>
     );
