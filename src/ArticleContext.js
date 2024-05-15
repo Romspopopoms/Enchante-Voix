@@ -37,10 +37,11 @@ export const ArticleProvider = ({ children }) => {
             formData.append('link', article.link);
 
             alert('test avec fetch');
-            const response = await fetch('/api', {
+            /*const response = await fetch('/api', {
                 method: 'AddArticle',
                 body: formData,
-            });
+            });*/
+            const response = await fetch('/api/addArticle');
             alert('end test avec fetch');
             
             if (response.ok) {
