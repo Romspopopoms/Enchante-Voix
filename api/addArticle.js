@@ -6,9 +6,6 @@ const pool = new Pool({
     connectionString: process.env.POSTGRES_URL,
     ssl: { rejectUnauthorized: false }
 });
-export async function AddArticle(req) {
-    alert('je suis dans api de addarticle');
-}
 export async function AddArticle(req, res) {
     alert('je suis dans api de addarticle');
     if (req.method !== 'POST') {
