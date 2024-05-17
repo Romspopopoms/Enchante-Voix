@@ -39,6 +39,7 @@
 //             formData.append('videoUrl', article.videoUrl);
 //             formData.append('link', article.link);
 
+<<<<<<< HEAD
 //             alert('test avec fetch');
 //             /*const response = await fetch('/api', {
 //                 method: 'AddArticle',
@@ -49,6 +50,26 @@
 //               body: article.imageFile,
 //             });
 //             alert('end test avec fetch');
+=======
+    const addArticle = async (article) => {
+        try {
+            const formData = new FormData();
+            formData.append('title', article.title);
+            formData.append('description', article.description);
+            if (article.imageFile) {
+                formData.append('imageFile', article.imageFile, article.imageFile.name);
+            }
+            formData.append('videoUrl', article.videoUrl);
+            formData.append('link', article.link);
+
+            alert('test avec fetch');
+            /*const response = await fetch('/api', {
+                method: 'AddArticle',
+                body: formData,
+            });*/
+            const response = await fetch('/api/addArticle');
+            alert('end test avec fetch');
+>>>>>>> e32eb280637b2473347406c106e04b0a5f78d1fa
             
 //     //         if (response.ok) {
 //     //             const newArticle = await response.json();
