@@ -2,7 +2,6 @@ import React from "react";
 import Chorale from "../assets/CHORALE.jpg"
 import PopUp1 from "../components/PopUp1"
 import PopUp2 from "../components/PopUp2"
-import Chorale2 from "../assets/Rectangle 9.png"
 import Chorale3 from "../assets/Rectangle 12.png"
 import PopUp3 from "../components/PopUp3";
 const Home = () => {
@@ -22,7 +21,7 @@ const Home = () => {
         <img src={Chorale} alt="chorale" className="w-full h-[803px] object-cover" />
         <PopUp1 className=" z-10 " />
         <div className="flex justify-end items-end relative"> 
-        <img src={Chorale2} alt="chorale2"
+        <img src={Chorale} alt="chorale2"
         className="w-full h-[1000px] object-cover absolute bottom-[-800px] z-[-5]" />
         
         </div> 

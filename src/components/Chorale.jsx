@@ -18,9 +18,9 @@ const Chorale = () => {
     return (
         <div className="h-auto w-auto relative">
             <img src={Chorales} alt="logo" className="h-full w-full rounded-lg object-cover" />
-            <div className="absolute left-10 bottom-10 h-auto w-[calc(100%-6rem)] rounded-xl bg-[#EFE386] justify-center font-baloo text-3xl p-2 flex" >
+            <div className="absolute left-[26%] xl:left-[28%] bottom-10 h-auto w-auto rounded-3xl bg-[#EFE386] justify-center font-baloo text-lg xl:text-xl p-2 xl:px-8 flex font-extrabold" >
                 {/* Ajoutez un bouton pour ouvrir le modal */}
-                <button onClick={openModal} className=" text-black rounded hover:text-[#f2c14e] text-center transition-colors duration-300">
+                <button onClick={openModal} className=" text-black rounded hover:text-[#A47A32] text-center transition-colors duration-300">
                 Chorale EnChant’Voix
                 </button>
             </div>

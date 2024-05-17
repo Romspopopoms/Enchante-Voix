@@ -1,6 +1,5 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ArticleProvider } from './ArticleContext';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Analytics } from "@vercel/analytics/react"
 import { AuthProvider } from './AuthContext';
@@ -20,7 +19,6 @@ import AjoutDarticlesPages from './pages/AjoutD\'articlesPage';
 const App = () => {
   return (
     <AuthProvider>
-      <ArticleProvider>
         <Router>
           <div className="flex flex-col xl:gap-y-12 w-full">
             <Navbar />
@@ -42,7 +40,6 @@ const App = () => {
             <Analytics />
           </div>
         </Router>
-      </ArticleProvider>
     </AuthProvider>
   );
 }
