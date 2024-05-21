@@ -39,10 +39,17 @@ const ArticleForm = () => {
         }
         formData.append('videoUrl', article.videoUrl);
         formData.append('link', article.link);
-
+        
         setLoading(true);
         try {
-            await addArticle(formData);
+            //await addArticle(formData);
+            const response = await fetch('/api', {
+                    method: 'AddArticle',
+                    body: formData,
+            });
+            const response = await fetch('/api', {
+                    method: 'AddArticle',
+                    body: formData,
             setArticle({ title: '', description: '', videoUrl: '', link: '' });
             setImageFile(null);
             setSubmitted(true);
