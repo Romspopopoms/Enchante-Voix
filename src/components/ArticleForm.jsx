@@ -47,9 +47,6 @@ const ArticleForm = () => {
                     method: 'AddArticle',
                     body: formData,
             });
-            const response = await fetch('/api', {
-                    method: 'AddArticle',
-                    body: formData,
             setArticle({ title: '', description: '', videoUrl: '', link: '' });
             setImageFile(null);
             setSubmitted(true);
