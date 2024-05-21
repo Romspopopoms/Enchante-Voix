@@ -43,7 +43,7 @@ const ArticleForm = () => {
         setLoading(true);
         try {
             //await addArticle(formData);
-            const response = await fetch('/api', {
+            await fetch('/api', {
                     method: 'AddArticle',
                     body: formData,
             });
