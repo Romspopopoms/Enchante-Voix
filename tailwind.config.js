@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
+    "./api/**/*.{js,jsx,ts,tsx}",
     "./src/**/*.{js,jsx,ts,tsx}", // Chemins vers tous les fichiers JS, JSX, TS, et TSX
     "./public/index.html" // Chemin vers votre fichier HTML principal
   ],
