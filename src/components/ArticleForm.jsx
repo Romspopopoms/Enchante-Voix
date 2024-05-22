@@ -43,10 +43,15 @@ const ArticleForm = () => {
         setLoading(true);
         try {
             //await addArticle(formData);
-            await fetch('/api', {
+            /*await fetch('/api', {
                     method: 'AddArticle',
                     body: formData,
-            });
+            });*/
+            await fetch('/api/upload', {
+              method: 'POST',
+              headers: { 'content-type': imageFile?.type || 'application/octet-stream' },
+              body: imageFile,
+            })
             setArticle({ title: '', description: '', videoUrl: '', link: '' });
             setImageFile(null);
             setSubmitted(true);
