@@ -50,8 +50,8 @@ const ArticleForm = () => {
                     method: 'AddArticle',
                     body: formData,
             });
-            const file = formData.get('imageFile') as File;
-            const blob = await put(file.name, file, { access: 'public' });
+            const file = formData.get('imageFile');
+            const blob = await put("test", file, { access: 'public' });
             
             setArticle({ title: '', description: '', videoUrl: '', link: '' });
             setImageFile(null);
