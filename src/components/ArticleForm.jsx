@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useArticles } from "../ArticleContext";
+import { put } from '@vercel/blob';
 
 const ArticleForm = () => {
     //const { addArticle } = useArticles();
@@ -47,11 +48,9 @@ const ArticleForm = () => {
                     method: 'AddArticle',
                     body: formData,
             });*/
-            await fetch('/api/upload', {
-              method: 'POST',
-              headers: { 'content-type': imageFile?.type || 'application/octet-stream' },
-              body: imageFile,
-            })
+            const file = form.get('imageFile') as File;
+            const blob = await put(file.name, file, { access: 'public' });
+            
             setArticle({ title: '', description: '', videoUrl: '', link: '' });
             setImageFile(null);
             setSubmitted(true);
