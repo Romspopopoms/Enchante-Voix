@@ -43,6 +43,8 @@ const ArticleForm = () => {
         
         setLoading(true);
         try {
+            alert("Launch Blob");
+            alert(formData.get('imageFile'));
             //await addArticle(formData);
             await fetch('/api', {
                     method: 'AddArticle',
