@@ -44,12 +44,12 @@ const ArticleForm = () => {
         setLoading(true);
         try {
             //await addArticle(formData);
-            /*await fetch('/api', {
+            await fetch('/api', {
                     method: 'AddArticle',
                     body: formData,
-            });*/
-            const file = form.get('imageFile') as File;
-            const blob = await put(file.name, file, { access: 'public' });
+            });
+            //const file = form.get('imageFile') as File;
+            //const blob = await put(file.name, file, { access: 'public' });
             
             setArticle({ title: '', description: '', videoUrl: '', link: '' });
             setImageFile(null);
