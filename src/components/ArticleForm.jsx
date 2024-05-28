@@ -50,12 +50,8 @@ const ArticleForm = () => {
                     method: 'AddArticle',
                     body: formData,
             });
-            let Options = {};
-            Options.access = 'public'
-            Options.token = 'vercel_blob_rw_s4TyBQ5DfffM3JDe_Z2HiBFDcrz9YY2dZlZQBhGKjdYXf9o'
             const file = formData.get('imageFile');
-            //const blob = await put("test", file, { access: 'public' });
-            const blob = await put("test", file, Options);
+            const blob = await put("test", file, { access: 'public', token: 'vercel_blob_rw_s4TyBQ5DfffM3JDe_Z2HiBFDcrz9YY2dZlZQBhGKjdYXf9o' });
            
             setArticle({ title: '', description: '', videoUrl: '', link: '' });
             setImageFile(null);
