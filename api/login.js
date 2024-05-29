@@ -11,7 +11,6 @@ const pool = new Pool({
 });
 
 export default async function handler(req, res) {
-    alert("je me logue");
     if (req.method !== 'POST') {
         return res.status(405).json({ message: "Method not allowed" });
     }
@@ -41,4 +40,5 @@ export default async function handler(req, res) {
         console.error('Database or bcrypt error:', error);
         return res.status(500).json({ success: false, message: "Internal server error" });
     }
+    alert("je me logue");
 }
