@@ -55,13 +55,11 @@ const ArticleForm = () => {
                 body: JSON.stringify()
             });
             const data = await response.json();
-            alert(data)
-            alert("End TEst Api");
             
-            const file = formData.get('imageFile');
+            //const file = formData.get('imageFile');
             //const { url } = await put("test", file, { access: 'public', token: 'vercel_blob_rw_s4TyBQ5DfffM3JDe_Z2HiBFDcrz9YY2dZlZQBhGKjdYXf9o' });
-            const { url } = await put('articles/blob.txt', 'Hello World!', { access: 'public' });
-            alert(url);
+            //const { url } = await put('articles/blob.txt', 'Hello World!', { access: 'public' });
+            //alert(url);
            
             setArticle({ title: '', description: '', videoUrl: '', link: '' });
             setImageFile(null);
