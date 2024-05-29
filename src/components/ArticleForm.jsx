@@ -45,17 +45,19 @@ const ArticleForm = () => {
         
         setLoading(true);
         try {
-            /*await fetch('/api', {
-                    method: 'AddArticle',
-                    body: formData,
-            });*/
-            const response = await fetch('/api/addArticle', {
+            /*const response = await fetch('/api/addArticle', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(obj)
-            });
+            });*/
+            const response = await fetch('/api/addArticle', {
+                  method: 'POST',
+                  headers: { 'content-type': formData.get('imageFile')?.type || 'application/octet-stream' },
+                  body: formData.get('imageFile'),
+            },
+            body: JSON.stringify(obj)
             const data = await response.json();
             
             //const file = formData.get('imageFile');
