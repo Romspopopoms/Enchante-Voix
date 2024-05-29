@@ -1,14 +1,19 @@
-import { put } from '@vercel/blob';
+//import { put } from '@vercel/blob';
 import { Pool } from 'pg';
-import { parseMultipartData } from '@vercel/fetch'; // Cette fonction aide à gérer multipart/form-data
+//import { parseMultipartData } from '@vercel/fetch'; // Cette fonction aide à gérer multipart/form-data
 
 const pool = new Pool({
     connectionString: process.env.POSTGRES_URL,
     ssl: { rejectUnauthorized: false }
 });
+
 export default async function handler(req, res) {
-    return res.status(401).json({ success: false, message: "method not defined" });
+    if (req.method !== 'POST') {
+        return res.status(405).json({ message: "Method not allowed" });
+    }
+    return res.status(405).json({ message: "Method not deployed" });
 }
+
 /*export async function AddArticle(req, res) {
     alert('je suis dans api de addarticle');
     if (req.method !== 'POST') {
@@ -41,11 +46,11 @@ export default async function handler(req, res) {
         console.error('Database error:', error);
         res.status(500).json({ message: "Internal server error" });
     }
-}*/
+}
 
 function convertToEmbedURL(url) {
     alert('je suis dans api de addarticle : convertToEmbedURL');
     const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?(youtube\.com\/watch\?v=|youtu.be\/)([a-zA-Z0-9_-]{11})/;
     const match = url.match(youtubeRegex);
     return match ? `https://www.youtube.com/embed/${match[2]}` : url;
-}
+}*/
