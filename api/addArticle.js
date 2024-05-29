@@ -19,11 +19,8 @@ export default async function handler(req, res) {
     
     const file = req.body
     const filename = 'TestSLT'
-    /*const blob = await put(filename, file, {
-        contentType,
-        access: 'public',
-    })
-
+    const blob = await put(filename, file, { access: 'public', token: 'vercel_blob_rw_s4TyBQ5DfffM3JDe_Z2HiBFDcrz9YY2dZlZQBhGKjdYXf9o' });
+    /*
     return NextResponse.json(blob)*/
 }
 
