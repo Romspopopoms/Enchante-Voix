@@ -51,7 +51,10 @@ const ArticleForm = () => {
             });*/
             const response = await fetch('/api/addArticle', {
                 method: 'POST',
-                body: formData
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
             });
             const data = await response.json();
             alert("End TEst Api");
