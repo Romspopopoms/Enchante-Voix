@@ -40,6 +40,8 @@ const ArticleForm = () => {
         }
         formData.append('videoUrl', article.videoUrl);
         formData.append('link', article.link);
+
+        const obj = {title: article.title, description: article.description, videoUrl: article.videoUrl, link: article.link};
         
         setLoading(true);
         try {
@@ -54,7 +56,7 @@ const ArticleForm = () => {
                 },
                 body: JSON.stringify()
             });
-            const data = await response.json();
+            const data = await response.json(obj);
             
             //const file = formData.get('imageFile');
             //const { url } = await put("test", file, { access: 'public', token: 'vercel_blob_rw_s4TyBQ5DfffM3JDe_Z2HiBFDcrz9YY2dZlZQBhGKjdYXf9o' });
