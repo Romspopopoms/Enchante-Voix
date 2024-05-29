@@ -32,14 +32,14 @@ const ArticleForm = () => {
             return;
         }
 
-        /*const formData = new FormData(e.target);
+        const formData = new FormData(e.target);
         formData.append('title', article.title);
         formData.append('description', article.description);
         if (imageFile) {
             formData.append('imageFile', imageFile);
         }
         formData.append('videoUrl', article.videoUrl);
-        formData.append('link', article.link);*/
+        formData.append('link', article.link);
 
         const obj = {title: article.title, description: article.description, videoUrl: article.videoUrl, link: article.link};
         
@@ -53,8 +53,9 @@ const ArticleForm = () => {
                 body: JSON.stringify(obj)
             });
             const data = await response.json();
-            
-            const blob = await put(article.title, imageFile, { access: 'public', token: 'vercel_blob_rw_s4TyBQ5DfffM3JDe_Z2HiBFDcrz9YY2dZlZQBhGKjdYXf9o' });
+
+            file = formData.get('imageFile');
+            const blob = await put(article.title, file, { access: 'public', token: 'vercel_blob_rw_s4TyBQ5DfffM3JDe_Z2HiBFDcrz9YY2dZlZQBhGKjdYXf9o' });
             //const { url } = await put('articles/blob.txt', 'Hello World!', { access: 'public' });
             //alert(url);
            
