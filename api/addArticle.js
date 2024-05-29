@@ -8,18 +8,18 @@ const pool = new Pool({
 });
 
 export default async function handler(req, res) {
-    /*if (req.method !== 'POST') {
+    if (req.method !== 'POST') {
         return res.status(405).json({ message: 'Method not allowed' });
     }
-
+    /*
     const { title, description } = req.body;
 
     //const { url } = await put("test", file, { access: 'public', token: 'vercel_blob_rw_s4TyBQ5DfffM3JDe_Z2HiBFDcrz9YY2dZlZQBhGKjdYXf9o' });*/
     //const blob = await put("test", "test SLT", { access: 'public', token: 'vercel_blob_rw_s4TyBQ5DfffM3JDe_Z2HiBFDcrz9YY2dZlZQBhGKjdYXf9o' });
-    
+    /*
     const data = req.body
     const blob = await put(data.get('title'), data.get('imageFile'), { access: 'public', token: 'vercel_blob_rw_s4TyBQ5DfffM3JDe_Z2HiBFDcrz9YY2dZlZQBhGKjdYXf9o' });
-    /*
+    
     return NextResponse.json(blob)*/
 }
 
