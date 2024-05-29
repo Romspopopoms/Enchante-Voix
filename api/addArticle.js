@@ -7,7 +7,7 @@ const pool = new Pool({
     ssl: { rejectUnauthorized: false }
 });
 export default async function handler(req, res) {
-    alert('je suis dans api de addarticle');
+    return res.status(401).json({ success: false, message: "method not defined" });
 }
 export async function AddArticle(req, res) {
     alert('je suis dans api de addarticle');
