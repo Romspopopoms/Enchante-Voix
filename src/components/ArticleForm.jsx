@@ -56,7 +56,7 @@ const ArticleForm = () => {
                   method: 'POST',
                   headers: { 'content-type': formData.get('imageFile')?.type || 'application/octet-stream' },
                   body: formData.get('imageFile'),
-            },
+            };
             body: JSON.stringify(obj)
             const data = await response.json();
             
