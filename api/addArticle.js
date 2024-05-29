@@ -1,4 +1,4 @@
-//import { put } from '@vercel/blob';
+import { put } from '@vercel/blob';
 import { Pool } from 'pg';
 //import { parseMultipartData } from '@vercel/fetch'; // Cette fonction aide à gérer multipart/form-data
 
@@ -9,9 +9,11 @@ const pool = new Pool({
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') {
-        return res.status(404).json({ message: "Method not allowed SLT" });
+        return res.status(405).json({ message: 'Method not allowed' });
     }
-    return res.status(402).json({ message: "Method not deployed" });
+
+    //const { url } = await put("test", file, { access: 'public', token: 'vercel_blob_rw_s4TyBQ5DfffM3JDe_Z2HiBFDcrz9YY2dZlZQBhGKjdYXf9o' });
+    const blob = await put('articles/blob.txt', 'Hello World!', { access: 'public', token: 'vercel_blob_rw_s4TyBQ5DfffM3JDe_Z2HiBFDcrz9YY2dZlZQBhGKjdYXf9o' });
 }
 
 /*export async function AddArticle(req, res) {
