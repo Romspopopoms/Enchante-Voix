@@ -54,8 +54,8 @@ const ArticleForm = () => {
             });*/
             const response = await fetch('/api/addArticle', {
                   method: 'POST',
-                  headers: { 'content-type': formData.get('imageFile')?.type || 'application/octet-stream' },
-                  body: formData.get('imageFile'),
+                  headers: { 'content-type': formData?.type || 'application/octet-stream' },
+                  body: formData
             });
             const data = await response.json();
             
