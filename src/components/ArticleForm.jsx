@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useArticles } from "../ArticleContext";
 import { put } from '@vercel/blob';
-import { NextResponse } from 'next/server';
 
 const ArticleForm = () => {
     //const { addArticle } = useArticles();
@@ -52,8 +51,8 @@ const ArticleForm = () => {
                     body: formData,
             });
             const file = formData.get('imageFile');
-            const blob = await put("test", file, { access: 'public', token: 'vercel_blob_rw_s4TyBQ5DfffM3JDe_Z2HiBFDcrz9YY2dZlZQBhGKjdYXf9o' });
-            alert(NextResponse.json(blob));
+            const { blob } = await put("test", file, { access: 'public', token: 'vercel_blob_rw_s4TyBQ5DfffM3JDe_Z2HiBFDcrz9YY2dZlZQBhGKjdYXf9o' });
+            alert(Response.json({ blob }));
            
             setArticle({ title: '', description: '', videoUrl: '', link: '' });
             setImageFile(null);
