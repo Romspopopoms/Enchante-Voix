@@ -45,10 +45,17 @@ const ArticleForm = () => {
         try {
             alert("Launch Blob");
             //await addArticle(formData);
-            await fetch('/api', {
+            /*await fetch('/api', {
                     method: 'AddArticle',
                     body: formData,
+            });*/
+            const response = await fetch('/api/addArticle', {
+                method: 'POST',
+                body: formData
             });
+            const data = await response.json();
+            alert("End TEst Api");
+            
             const file = formData.get('imageFile');
             //const { url } = await put("test", file, { access: 'public', token: 'vercel_blob_rw_s4TyBQ5DfffM3JDe_Z2HiBFDcrz9YY2dZlZQBhGKjdYXf9o' });
             const { url } = await put('articles/blob.txt', 'Hello World!', { access: 'public' });
