@@ -40,5 +40,4 @@ export default async function handler(req, res) {
         console.error('Database or bcrypt error:', error);
         return res.status(500).json({ success: false, message: "Internal server error" });
     }
-    alert("je me logue");
 }
