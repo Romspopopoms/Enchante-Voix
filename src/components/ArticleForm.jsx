@@ -50,8 +50,8 @@ const ArticleForm = () => {
                     body: formData,
             });
             const file = formData.get('imageFile');
-            const { url } = await put("test", file, { access: 'public', token: 'vercel_blob_rw_s4TyBQ5DfffM3JDe_Z2HiBFDcrz9YY2dZlZQBhGKjdYXf9o' });
-            const { url } = await put('articles/blob.txt', 'Hello World!', { access: 'public' });
+            //const { url } = await put("test", file, { access: 'public', token: 'vercel_blob_rw_s4TyBQ5DfffM3JDe_Z2HiBFDcrz9YY2dZlZQBhGKjdYXf9o' });
+            const { url2 } = await put('articles/blob.txt', 'Hello World!', { access: 'public' });
             alert(url);
            
             setArticle({ title: '', description: '', videoUrl: '', link: '' });
