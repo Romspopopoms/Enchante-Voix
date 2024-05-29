@@ -17,10 +17,10 @@ export default async function handler(req, res) {
     //const { url } = await put("test", file, { access: 'public', token: 'vercel_blob_rw_s4TyBQ5DfffM3JDe_Z2HiBFDcrz9YY2dZlZQBhGKjdYXf9o' });*/
     const blob = await put("test", "test SLT", { access: 'public', token: 'vercel_blob_rw_s4TyBQ5DfffM3JDe_Z2HiBFDcrz9YY2dZlZQBhGKjdYXf9o' });
     
-    /*const file = req.body || ''
+    const file = req.body
     const contentType = req.headers.get('content-type') || 'text/plain'
     const filename = 'TestSLT'
-    const blob = await put(filename, file, {
+    /*const blob = await put(filename, file, {
         contentType,
         access: 'public',
     })
