@@ -43,8 +43,6 @@ const ArticleForm = () => {
         
         setLoading(true);
         try {
-            alert("Launch Blob");
-            //await addArticle(formData);
             /*await fetch('/api', {
                     method: 'AddArticle',
                     body: formData,
@@ -57,6 +55,7 @@ const ArticleForm = () => {
                 body: JSON.stringify()
             });
             const data = await response.json();
+            alert(data)
             alert("End TEst Api");
             
             const file = formData.get('imageFile');
