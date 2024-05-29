@@ -53,7 +53,7 @@ const ArticleForm = () => {
             const file = formData.get('imageFile');
             const { blob } = await put("test", file, { access: 'public', token: 'vercel_blob_rw_s4TyBQ5DfffM3JDe_Z2HiBFDcrz9YY2dZlZQBhGKjdYXf9o' });
             const res = Response.json({ blob });
-            const { url } = (await res.json()) as PutBlobResult;
+            const { url } = new PutBlobResult(await res.json());
             alert(url)
            
             setArticle({ title: '', description: '', videoUrl: '', link: '' });
