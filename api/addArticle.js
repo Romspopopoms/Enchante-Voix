@@ -9,7 +9,7 @@ const pool = new Pool({
 export default async function handler(req, res) {
     return res.status(401).json({ success: false, message: "method not defined" });
 }
-export async function AddArticle(req, res) {
+/*export async function AddArticle(req, res) {
     alert('je suis dans api de addarticle');
     if (req.method !== 'POST') {
         return res.status(405).json({ message: 'Method not allowed' });
@@ -41,7 +41,7 @@ export async function AddArticle(req, res) {
         console.error('Database error:', error);
         res.status(500).json({ message: "Internal server error" });
     }
-}
+}*/
 
 function convertToEmbedURL(url) {
     alert('je suis dans api de addarticle : convertToEmbedURL');
