@@ -24,7 +24,9 @@ export default async function handler(req, res) {
     return NextResponse.json(blob)*/
 
     const { title, description, videoUrl, link, imageUrl } = req.body;
-
+    console.log(title);
+    console.log(description);
+    console.log(imageUrl);
     try {
         const embedUrl = convertToEmbedURL(videoUrl);
         const query = 'INSERT INTO articles (title, description, imageUrl, videoUrl, link) VALUES ($1, $2, $3, $4, $5) RETURNING *';
