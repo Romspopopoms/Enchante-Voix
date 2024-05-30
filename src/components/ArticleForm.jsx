@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useArticles } from "../ArticleContext";
-import { put } from '@vercel/blob';
+//import { put } from '@vercel/blob';
 
 const ArticleForm = () => {
-    //const { addArticle } = useArticles();
+    const { addArticle } = useArticles();
     const [article, setArticle] = useState({
         title: '',
         description: '',
@@ -32,7 +32,7 @@ const ArticleForm = () => {
             return;
         }
 
-        const apiKey = process.env.REACT_APP_BLOB_KEY
+        //const apiKey = process.env.REACT_APP_BLOB_KEY
 
         const formData = new FormData(e.target);
         formData.append('title', article.title);
@@ -45,6 +45,7 @@ const ArticleForm = () => {
 
         setLoading(true);
         try {
+            /*
             const file = formData.get('imageFile');
             const blob = await put(article.title, file, { access: 'public', token: apiKey });
             const retour = JSON.stringify(blob);
@@ -60,9 +61,8 @@ const ArticleForm = () => {
             });
             
             const data = await response.json();
-            //const { url } = await put('articles/blob.txt', 'Hello World!', { access: 'public' });
-            //alert(data.url);
-           
+            */
+            await addArticle(formData);
             setArticle({ title: '', description: '', videoUrl: '', link: '' });
             setImageFile(null);
             setSubmitted(true);
