@@ -27,7 +27,7 @@ export const ArticleProvider = ({ children }) => {
                 }
         };
 
-//     const addArticle = async (article) => {
+        const addArticle = async (article) => {
 //         setLoading(true); // Définir loading à true avant de commencer la requête
 //         try {
 //             const formData = new FormData();
@@ -84,7 +84,7 @@ export const ArticleProvider = ({ children }) => {
 //     //     } finally {
 //     //         setLoading(false); // Définir loading à false après la requête, qu'elle ait réussi ou échoué
 //     //     }
-//     // };
+        };
 
         useEffect(() => {
                 fetchArticles();
