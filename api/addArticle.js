@@ -1,6 +1,5 @@
 import { put } from '@vercel/blob';
 import { Pool } from 'pg';
-//import { parseMultipartData } from '@vercel/fetch'; // Cette fonction aide à gérer multipart/form-data
 
 const pool = new Pool({
     connectionString: process.env.POSTGRES_URL,
