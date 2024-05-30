@@ -11,6 +11,13 @@ export default async function handler(req, res) {
         return res.status(405).json({ message: 'Method not allowed' });
     }
     //test
+    const formdata = req.body;
+    const file = formData.get('imageFile');
+    const blob = await put(article.title, file, { access: 'public', token: 'vercel_blob_rw_s4TyBQ5DfffM3JDe_Z2HiBFDcrz9YY2dZlZQBhGKjdYXf9o' });
+    //const retour = JSON.stringify(blob);
+    //const datablob = JSON.parse(retour);
+    //const obj = {title: article.title, description: article.description,imageUrl: datablob.url, videoUrl: article.videoUrl, link: article.link};
+        
     return res.status(200).json({ message: 'OK avec formdata' });
     //test
 
