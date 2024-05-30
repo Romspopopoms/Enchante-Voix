@@ -8,6 +8,7 @@ const pool = new Pool({
 });
 
 export default async function handler(req, res) {
+    console.log("je lances handler");
     if (req.method !== 'POST') {
         return res.status(405).json({ message: 'Method not allowed' });
     }
