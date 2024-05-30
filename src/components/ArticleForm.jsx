@@ -62,7 +62,7 @@ const ArticleForm = () => {
             
             const data = await response.json();
             */
-            await addArticle(formData);
+            //await addArticle(formData);
             setArticle({ title: '', description: '', videoUrl: '', link: '' });
             setImageFile(null);
             setSubmitted(true);
