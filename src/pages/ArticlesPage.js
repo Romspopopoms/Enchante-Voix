@@ -2,13 +2,24 @@ import React, { useEffect } from 'react';
 import { useArticles } from '../ArticleContext';
 
 const ArticlePage = () => {
-  const { articles, fetchArticles } = useArticles(); // Utilisation de fetchArticles défini dans ArticleContext
+  /*const { articles, fetchArticles } = useArticles(); // Utilisation de fetchArticles défini dans ArticleContext
 
   useEffect(() => {
     if (articles.length === 0) {
       fetchArticles();
     }
   }, [articles.length, fetchArticles]);  // Dépendance ajoutée pour suivre les changements correctement
+  */
+
+  const response = await fetch('/api/getArticles', {
+                method: 'GET'
+            });
+  if (response.ok) {
+    const data = await response.json();
+    //setArticles(data);
+  } else {
+    throw new Error('Failed to fetch articles');
+  }
 
   const VideoContainer = ({ src, title }) => (
     <div className="aspect-w-16 aspect-h-9 w-full overflow-hidden rounded-lg shadow-lg">
