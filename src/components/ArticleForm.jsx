@@ -32,6 +32,9 @@ const ArticleForm = () => {
             return;
         }
 
+        const apiKey = process.env.REACT_APP_TEST
+        alert(apiKey);
+
         const formData = new FormData(e.target);
         formData.append('title', article.title);
         formData.append('description', article.description);
