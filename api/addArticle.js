@@ -29,9 +29,9 @@ export default async function handler(req, res) {
     console.log(description);
     console.log(imageUrl);
     try {
-        const embedUrl = convertToEmbedURL(videoUrl);
+        //const embedUrl = convertToEmbedURL(videoUrl);
         const query = 'INSERT INTO articles (title, description, imageUrl, videoUrl, link) VALUES ($1, $2, $3, $4, $5) RETURNING *';
-        const params = [title, description, imageUrl, embedUrl, link];
+        const params = [title, description, imageUrl, videoUrl, link];
         const { rows } = await pool.query(query, params);
         return res.status(200).json(rows[0]);
     } catch (error) {
