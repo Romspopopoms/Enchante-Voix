@@ -10,6 +10,7 @@ export const ArticleProvider = ({ children }) => {
     const [error, setError] = useState(null);
 
     const fetchArticles = async () => {
+        alert("je suis dans le fetcharticle")
         setLoading(true);
         try {
             const response = await fetch('/api/getArticles');
