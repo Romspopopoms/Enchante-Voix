@@ -41,25 +41,24 @@ const ArticleForm = () => {
         formData.append('videoUrl', article.videoUrl);
         formData.append('link', article.link);
 
-        const obj = {title: article.title, description: article.description, videoUrl: article.videoUrl, link: article.link};
-        
         setLoading(true);
         try {
-            /*const response = await fetch('/api/addArticle', {
+            const file = formData.get('imageFile');
+            const blob = await put(article.title, file, { access: 'public', token: 'vercel_blob_rw_s4TyBQ5DfffM3JDe_Z2HiBFDcrz9YY2dZlZQBhGKjdYXf9o' });
+            const retour = JSON.stringify(blob);
+            const JSONdata = JSON.parse(retour);
+            const obj = {title: article.title, description: article.description,fileurl: JSONdata.url, videoUrl: article.videoUrl, link: article.link};
+        
+            const response = await fetch('/api/addArticle', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(obj)
             });
-            const data = await response.json();*/
-
-            const file = formData.get('imageFile');
-            const blob = await put(article.title, file, { access: 'public', token: 'vercel_blob_rw_s4TyBQ5DfffM3JDe_Z2HiBFDcrz9YY2dZlZQBhGKjdYXf9o' });
-            const retour = JSON.stringify(blob);
-            const data = JSON.parse(retour);
+            const data = await response.json();
             //const { url } = await put('articles/blob.txt', 'Hello World!', { access: 'public' });
-            alert(data.url);
+            //alert(data.url);
            
             setArticle({ title: '', description: '', videoUrl: '', link: '' });
             setImageFile(null);
