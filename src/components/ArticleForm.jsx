@@ -1,61 +1,92 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useArticles } from "../ArticleContext";
+//import { put } from '@vercel/blob';
 
-const ArticleContext = createContext();
+const ArticleForm = () => {
+    const { addArticle } = useArticles();
+    const [article, setArticle] = useState({
+        title: '',
+        description: '',
+        videoUrl: '',
+        link: ''
+    });
+    const [imageFile, setImageFile] = useState(null);
+    const [submitted, setSubmitted] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
 
-export const useArticles = () => useContext(ArticleContext);
+    const handleChange = (e) => {
+        setArticle({ ...article, [e.target.name]: e.target.value });
+    };
 
-export const ArticleProvider = ({ children }) => {
-    const [articles, setArticles] = useState([]);
-
-    const fetchArticles = async () => {
-        try {
-            const response = await fetch('/api/getArticles');
-            if (response.ok) {
-                const data = await response.json();
-                setArticles(data);
-            } else {
-                throw new Error('Failed to fetch articles');
-            }
-        } catch (error) {
-            console.error('Error fetching articles:', error);
+    const handleImageChange = (e) => {
+        if (e.target.files[0]) {
+            setImageFile(e.target.files[0]);
         }
     };
 
-    useEffect(() => {
-        fetchArticles();
-    }, []);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!article.title || !article.description) {
+            setError('Le titre et la description sont requis.');
+            return;
+        }
 
-    const addArticle = async (article) => {
+        //const apiKey = process.env.REACT_APP_BLOB_KEY
+
+        const formData = new FormData(e.target);
+        formData.append('title', article.title);
+        formData.append('description', article.description);
+        if (imageFile) {
+            formData.append('imageFile', imageFile);
+        }
+        formData.append('videoUrl', article.videoUrl);
+        formData.append('link', article.link);
+
+        setLoading(true);
         try {
-            const formData = new FormData();
-            formData.append('title', article.title);
-            formData.append('description', article.description);
-            if (article.imageFile) {
-                formData.append('imageFile', article.imageFile, article.imageFile.name);
-            }
-            formData.append('videoUrl', article.videoUrl);
-            formData.append('link', article.link);
-
+            /*
+            const file = formData.get('imageFile');
+            const blob = await put(article.title, file, { access: 'public', token: apiKey });
+            const retour = JSON.stringify(blob);
+            const datablob = JSON.parse(retour);
+            const obj = {title: article.title, description: article.description,imageUrl: datablob.url, videoUrl: article.videoUrl, link: article.link};
+        
             const response = await fetch('/api/addArticle', {
                 method: 'POST',
-                body: formData,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(obj)
             });
-
-            if (response.ok) {
-                const newArticle = await response.json();
-                setArticles(prev => [...prev, newArticle]);
-            } else {
-                const errorResponse = await response.text();
-                throw new Error('Failed to add article: ' + errorResponse);
-            }
+            
+            const data = await response.json();
+            */
+            //await addArticle(formData);
+            setArticle({ title: '', description: '', videoUrl: '', link: '' });
+            setImageFile(null);
+            setSubmitted(true);
+            setTimeout(() => setSubmitted(false), 5000);
         } catch (error) {
-            console.error('Error adding article:', error);
+            setError('Échec de la création de l\'article: ' + error.message);
+        } finally {
+            setLoading(false);
         }
     };
 
     return (
-        <ArticleContext.Provider value={{ articles, addArticle, fetchArticles }}>
-            {children}
-        </ArticleContext.Provider>
+        <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center gap-10 border-2 border-slate-700 rounded-md p-4 bg-transparent shadow-black h-auto w-1/2" encType="multipart/form-data">
+            {submitted && <p className="text-green-500">Article créé avec succès!</p>}
+            {error && <p className="text-red-500">{error}</p>}
+            <h2 className="text-4xl text-center">Créer un article</h2>
+            <input type="text" name="title" value={article.title} onChange={handleChange} placeholder="Titre de l'article" className='h-10 w-full rounded-xl text-center shadow-black' required />
+            <textarea name="description" value={article.description} onChange={handleChange} placeholder="Description" className='h-40 w-full rounded-xl text-center shadow-black' required />
+            <input type="file" onChange={handleImageChange} disabled={loading} className='file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-yellow-600 hover:file:bg-violet-100'/>
+            <input type="text" name="videoUrl" value={article.videoUrl} onChange={handleChange} placeholder="Lien vidéo YouTube/Vimeo" className='h-10 w-full rounded-xl text-center shadow-black' />
+            <input type="text" name="link" value={article.link} onChange={handleChange} placeholder="Lien https://" className='h-10 w-full rounded-xl text-center shadow-black' />
+            <button type="submit" disabled={loading} className='h-10 w-full rounded-xl text-center bg-slate-300 hover:bg-red-200'>Créer l'article</button>
+        </form>
     );
 };
+
+export default ArticleForm;
