@@ -46,8 +46,8 @@ const ArticleForm = () => {
             const file = formData.get('imageFile');
             const blob = await put(article.title, file, { access: 'public', token: 'vercel_blob_rw_s4TyBQ5DfffM3JDe_Z2HiBFDcrz9YY2dZlZQBhGKjdYXf9o' });
             const retour = JSON.stringify(blob);
-            const JSONdata = JSON.parse(retour);
-            const obj = {title: article.title, description: article.description,fileurl: JSONdata.url, videoUrl: article.videoUrl, link: article.link};
+            const datablob = JSON.parse(retour);
+            const obj = {title: article.title, description: article.description,imageUrl: datablob.url, videoUrl: article.videoUrl, link: article.link};
         
             const response = await fetch('/api/addArticle', {
                 method: 'POST',
