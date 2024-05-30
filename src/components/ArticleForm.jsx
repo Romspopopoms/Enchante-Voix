@@ -58,7 +58,7 @@ const ArticleForm = () => {
             }); OK code */
             //test
             const response = await fetch('/api/addArticle', {
-                method: 'POST',
+                method: 'PUT',
                 body: formData
             }); 
             //test
