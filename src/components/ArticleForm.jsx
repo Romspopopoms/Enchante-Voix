@@ -32,8 +32,7 @@ const ArticleForm = () => {
             return;
         }
 
-        const apiKey = process.env.REACT_APP_TEST
-        alert(apiKey);
+        const apiKey = process.env.REACT_APP_BLOB_KEY
 
         const formData = new FormData(e.target);
         formData.append('title', article.title);
@@ -47,7 +46,7 @@ const ArticleForm = () => {
         setLoading(true);
         try {
             const file = formData.get('imageFile');
-            const blob = await put(article.title, file, { access: 'public', token: 'vercel_blob_rw_s4TyBQ5DfffM3JDe_Z2HiBFDcrz9YY2dZlZQBhGKjdYXf9o' });
+            const blob = await put(article.title, file, { access: 'public', token: apiKey });
             const retour = JSON.stringify(blob);
             const datablob = JSON.parse(retour);
             const obj = {title: article.title, description: article.description,imageUrl: datablob.url, videoUrl: article.videoUrl, link: article.link};
