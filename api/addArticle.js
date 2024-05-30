@@ -7,23 +7,10 @@ const pool = new Pool({
 });
 
 export default async function handler(req, res) {
-    if (req.method !== 'PUT') {
+    if (req.method !== 'POST') {
         return res.status(405).json({ message: 'Method not allowed' });
     }
-    //test
-    //const formdata = req.body;
-    const formdata = new FormData(req.body);
-    const file = formData.get('imageFile');
-    const title = formData.get('title');
-    const blob = await put(title, file, { access: 'public', token: 'vercel_blob_rw_s4TyBQ5DfffM3JDe_Z2HiBFDcrz9YY2dZlZQBhGKjdYXf9o' });
-    //const retour = JSON.stringify(blob);
-    //const datablob = JSON.parse(retour);
-    //const obj = {title: article.title, description: article.description,imageUrl: datablob.url, videoUrl: article.videoUrl, link: article.link};
-        
-    return res.status(200).json({ message: 'OK avec formdata' });
-    //test
-
-    /* code OK 
+    
     const { title, description, videoUrl, link, imageUrl } = req.body;
     try {
         //const embedUrl = convertToEmbedURL(videoUrl);
@@ -34,7 +21,7 @@ export default async function handler(req, res) {
     } catch (error) {
         console.error('Database error:', error);
         return res.status(500).json({ message: "Internal server error" });
-    } OK code */
+    } 
 }
 
 function convertToEmbedURL(url) {
