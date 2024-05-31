@@ -52,6 +52,7 @@ export const ArticleProvider = ({ children }) => {
             //const retour = JSON.stringify(blob);
             //const datablob = JSON.parse(retour);
             const obj = {title: article.title, description: article.description,imageUrl: "", videoUrl: article.videoUrl, link: article.link};
+            console.log('Adding obj: (addArticle)', obj);
         
             const response = await fetch('/api/addArticle', {
                 method: 'POST',
