@@ -51,7 +51,7 @@ export const ArticleProvider = ({ children }) => {
             //const blob = await put(article.title, file, { access: 'public', token: apiKey });
             //const retour = JSON.stringify(blob);
             //const datablob = JSON.parse(retour);
-            const obj = {title: formData.title, description: formData.description,imageUrl: "", videoUrl: formData.videoUrl, link: formData.link};
+            var obj = {title: formData.get('title'), description: formData.get('description'), videoUrl: formData.get('videoUrl'), link: formData.get('link')};
             console.log('Adding obj: (addArticle)', obj);
         
             const response = await fetch('/api/addArticle', {
