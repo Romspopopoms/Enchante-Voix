@@ -67,7 +67,8 @@ const ArticleForm = () => {
             });
             
             const data = await response.json();*/
-            
+
+            console.log('Adding article (Form):', formData);
             await addArticle(formData);
             //a changer pour passer par Context
             setArticle({ title: '', description: '', videoUrl: '', link: '' });
