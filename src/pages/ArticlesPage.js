@@ -25,16 +25,16 @@ const ArticlePage = () => {
   );
 
   return (
-    <div className="flex flex-col items-center justify-center mt-40 xl:mt-28 gap-y-8">
+    <div className="flex flex-col items-center justify-center h-screen overflow-y-auto mt-40 xl:mt-28 gap-y-8">
       <h2 className='text-center text-3xl font-bold text-[#c6941A] mb-5'>Articles</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
+      <div className="flex flex-col w-[90%]">
         {articles.length > 0 ? (
           articles.map((article, index) => (
             <div key={index} className="bg-white p-4 rounded-lg shadow-lg flex flex-col space-y-3">
-              <h3 className='text-xl font-semibold'>{article.title}</h3>
-              <pre className='text-gray-700'>{article.description}</pre>
+              <h3 className='text-xl font-semibold text-center'>{article.title}</h3>
+              <pre className='text-gray-700 text-center'>{article.description}</pre>
               {article.imageurl && (
-                <img src={article.imageurl} alt={article.title} className="max-h-40 w-full object-cover rounded-md"/>
+                <img src={article.imageurl} alt={article.title} className="max-h-[50%] w-full object-cover rounded-md"/>
               )}
               {article.videourl && (
                 <VideoContainer src={article.videourl} title={`Embedded YouTube video: ${article.title}`} />
