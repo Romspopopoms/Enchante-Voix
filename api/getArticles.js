@@ -1,4 +1,3 @@
-// /api/getArticles.js
 import { Pool } from 'pg';
 
 const pool = new Pool({
@@ -7,14 +6,18 @@ const pool = new Pool({
 });
 
 export default async function handler(req, res) {
+    console.log('Request received:', req.method, req.url);
+
     if (req.method !== 'GET') {
+        console.log('Method not allowed:', req.method);
         return res.status(405).json({ message: "Method not allowed" });
     }
-    return res.status(403).json({ message: "Method not allowed" });
 
     try {
-        const query = 'SELECT * FROM articles'; // Assurez-vous que votre table s'appelle 'articles'
+        console.log('Querying database for articles');
+        const query = 'SELECT * FROM articles';
         const { rows } = await pool.query(query);
+        console.log('Articles retrieved:', rows);
         res.status(200).json(rows);
     } catch (error) {
         console.error('Database error:', error);

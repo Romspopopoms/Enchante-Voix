@@ -11,13 +11,17 @@ export const ArticleProvider = ({ children }) => {
 
     const fetchArticles = async () => {
         setLoading(true);
+        console.log('Fetching articles from API');
         try {
             const response = await fetch('/api/getArticles');
+            console.log('Response status:', response.status);
             if (response.ok) {
                 const data = await response.json();
+                console.log('Articles fetched:', data);
                 setArticles(data);
             } else {
-                throw new Error('Failed to fetch articles');
+                const errorText = await response.text();
+                throw new Error('Failed to fetch articles: ' + errorText);
             }
         } catch (error) {
             console.error('Error fetching articles:', error);
@@ -29,6 +33,7 @@ export const ArticleProvider = ({ children }) => {
 
     const addArticle = async (article) => {
         setLoading(true);
+        console.log('Adding article:', article);
         try {
             const formData = new FormData();
             formData.append('title', article.title);
@@ -44,12 +49,14 @@ export const ArticleProvider = ({ children }) => {
                 body: formData,
             });
 
+            console.log('Response status for adding article:', response.status);
             if (response.ok) {
                 const newArticle = await response.json();
+                console.log('Article added:', newArticle);
                 setArticles(prev => [...prev, newArticle]);
             } else {
-                const errorResponse = await response.text();
-                throw new Error('Failed to add article: ' + errorResponse);
+                const errorText = await response.text();
+                throw new Error('Failed to add article: ' + errorText);
             }
         } catch (error) {
             console.error('Error adding article:', error);
