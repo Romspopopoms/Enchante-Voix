@@ -54,7 +54,8 @@ const ArticleForm = () => {
                 const blob = await put(article.title, file, { access: 'public', token: apiKey });
                 const retour = JSON.stringify(blob);
                 const datablob = JSON.parse(retour);
-                obj[imageUrl] = datablob.url ;
+                const key = "imageUrl";
+                obj[key] = datablob.url ;
             }
         
             const response = await fetch('/api/addArticle', {
