@@ -4,6 +4,9 @@ import { put } from '@vercel/blob';
 
 const ArticleForm = () => {
     //const { addArticle } = useArticles();
+    //test
+    const { addArticle } = useArticles();
+    //test
     const [article, setArticle] = useState({
         title: '',
         description: '',
@@ -32,8 +35,6 @@ const ArticleForm = () => {
             return;
         }
 
-        const apiKey = process.env.REACT_APP_BLOB_KEY
-
         const formData = new FormData(e.target);
         formData.append('title', article.title);
         formData.append('description', article.description);
@@ -45,7 +46,11 @@ const ArticleForm = () => {
 
         setLoading(true);
         try {
+            //test
+            /*
+            const apiKey = process.env.REACT_APP_BLOB_KEY;
             const file = formData.get('imageFile');
+
             const blob = await put(article.title, file, { access: 'public', token: apiKey });
             const retour = JSON.stringify(blob);
             const datablob = JSON.parse(retour);
@@ -59,9 +64,10 @@ const ArticleForm = () => {
                 body: JSON.stringify(obj)
             });
             
-            const data = await response.json();
+            const data = await response.json();*/
             
-            //await addArticle(formData);
+            await addArticle(formData);
+            //test
             setArticle({ title: '', description: '', videoUrl: '', link: '' });
             setImageFile(null);
             setSubmitted(true);
