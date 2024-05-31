@@ -35,21 +35,10 @@ export const ArticleProvider = ({ children }) => {
     const addArticle = async (formData) => {
         setLoading(true);
         console.log('Adding article:', formData);
-        try {            
-            //A changer pour passer par ici
-            /*const formData = new FormData();
-            formData.append('title', article.title);
-            formData.append('description', article.description);
-            if (article.imageFile) {
-                formData.append('imageFile', article.imageFile, article.imageFile.name);
-            }
-            formData.append('videoUrl', article.videoUrl);
-            formData.append('link', article.link);*/
-
+        try {   
             const apiKey = process.env.REACT_APP_BLOB_KEY;
             const file = formData.get('imageFile');
             var obj = {title: formData.get('title'), description: formData.get('description'), videoUrl: formData.get('videoUrl'), link: formData.get('link')};
-            //,imageUrl: datablob.url
             if (file) {
                 const blob = await put(formData.get('title'), file, { access: 'public', token: apiKey });
                 const retour = JSON.stringify(blob);
@@ -66,10 +55,8 @@ export const ArticleProvider = ({ children }) => {
                 body: JSON.stringify(obj)
             });
             
-            const data = await response.json();
-            //A changer pour passer par ici
-
             console.log('Response status for adding article:', response.status);
+            
             if (response.ok) {
                 const newArticle = await response.json();
                 console.log('Article added:', newArticle);
