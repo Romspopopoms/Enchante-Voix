@@ -46,6 +46,7 @@ export const ArticleProvider = ({ children }) => {
             formData.append('link', article.link);
             
             //test
+            const apiKey = process.env.REACT_APP_BLOB_KEY;
             const file = formData.get('imageFile');
             const blob = await put(article.title, file, { access: 'public', token: apiKey });
             const retour = JSON.stringify(blob);
