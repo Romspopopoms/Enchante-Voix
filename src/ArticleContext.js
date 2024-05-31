@@ -50,7 +50,7 @@ export const ArticleProvider = ({ children }) => {
             const file = formData.get('imageFile');
             var obj = {title: formData.get('title'), description: formData.get('description'), videoUrl: formData.get('videoUrl'), link: formData.get('link')};
             //,imageUrl: datablob.url
-            if (imageFile) {
+            if (file) {
                 const blob = await put(formData.get('title'), file, { access: 'public', token: apiKey });
                 const retour = JSON.stringify(blob);
                 const datablob = JSON.parse(retour);
