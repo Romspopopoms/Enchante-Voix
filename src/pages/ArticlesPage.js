@@ -32,7 +32,7 @@ const ArticlePage = () => {
           articles.map((article, index) => (
             <div key={index} className="bg-white p-4 rounded-lg shadow-lg flex flex-col space-y-3">
               <h3 className='text-xl font-semibold'>{article.title}</h3>
-              <p className='text-gray-700'>{article.description}</p>
+              <pre className='text-gray-700'>{article.description}</pre>
               {article.imageurl && (
                 <img src={article.imageurl} alt={article.title} className="max-h-40 w-full object-cover rounded-md"/>
               )}
