@@ -48,11 +48,15 @@ export const ArticleProvider = ({ children }) => {
 
             const apiKey = process.env.REACT_APP_BLOB_KEY;
             const file = formData.get('imageFile');
-            //const blob = await put(article.title, file, { access: 'public', token: apiKey });
-            //const retour = JSON.stringify(blob);
-            //const datablob = JSON.parse(retour);
             var obj = {title: formData.get('title'), description: formData.get('description'), videoUrl: formData.get('videoUrl'), link: formData.get('link')};
-            console.log('Adding obj: (addArticle)', obj);
+            //,imageUrl: datablob.url
+            if (imageFile) {
+                const blob = await put(formData.get('title'), file, { access: 'public', token: apiKey });
+                const retour = JSON.stringify(blob);
+                const datablob = JSON.parse(retour);
+                const key = "imageUrl";
+                obj[key] = datablob.url ;
+            }
         
             const response = await fetch('/api/addArticle', {
                 method: 'POST',
