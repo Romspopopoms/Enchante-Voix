@@ -32,26 +32,26 @@ export const ArticleProvider = ({ children }) => {
         }
     };
 
-    const addArticle = async (article) => {
+    const addArticle = async (formData) => {
         setLoading(true);
         console.log('Adding article:', article);
-        try {
-            const formData = new FormData();
+        try {            
+            //A changer pour passer par ici
+            /*const formData = new FormData();
             formData.append('title', article.title);
             formData.append('description', article.description);
             if (article.imageFile) {
                 formData.append('imageFile', article.imageFile, article.imageFile.name);
             }
             formData.append('videoUrl', article.videoUrl);
-            formData.append('link', article.link);
-            
-            //A changer pour passer par ici
+            formData.append('link', article.link);*/
+
             const apiKey = process.env.REACT_APP_BLOB_KEY;
             const file = formData.get('imageFile');
             //const blob = await put(article.title, file, { access: 'public', token: apiKey });
             //const retour = JSON.stringify(blob);
             //const datablob = JSON.parse(retour);
-            const obj = {title: article.title, description: article.description,imageUrl: "", videoUrl: article.videoUrl, link: article.link};
+            const obj = {title: formData.title, description: formData.description,imageUrl: "", videoUrl: formData.videoUrl, link: formData.link};
             console.log('Adding obj: (addArticle)', obj);
         
             const response = await fetch('/api/addArticle', {
