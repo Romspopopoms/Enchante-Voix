@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { put } from '@vercel/blob';
 
 const ArticleContext = createContext();
 
@@ -43,11 +44,29 @@ export const ArticleProvider = ({ children }) => {
             }
             formData.append('videoUrl', article.videoUrl);
             formData.append('link', article.link);
-
+            
+            //test
+            const file = formData.get('imageFile');
+            const blob = await put(article.title, file, { access: 'public', token: apiKey });
+            const retour = JSON.stringify(blob);
+            const datablob = JSON.parse(retour);
+            const obj = {title: article.title, description: article.description,imageUrl: datablob.url, videoUrl: article.videoUrl, link: article.link};
+        
             const response = await fetch('/api/addArticle', {
                 method: 'POST',
-                body: formData,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(obj)
             });
+            
+            const data = await response.json();
+            
+            /*const response = await fetch('/api/addArticle', {
+                method: 'POST',
+                body: formData,
+            });*/
+            //test
 
             console.log('Response status for adding article:', response.status);
             if (response.ok) {
