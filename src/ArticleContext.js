@@ -34,7 +34,7 @@ export const ArticleProvider = ({ children }) => {
 
     const addArticle = async (formData) => {
         setLoading(true);
-        console.log('Adding article:', article);
+        console.log('Adding article:', formData);
         try {            
             //A changer pour passer par ici
             /*const formData = new FormData();
