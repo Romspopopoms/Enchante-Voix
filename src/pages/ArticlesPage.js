@@ -10,15 +10,6 @@ const ArticlePage = () => {
     }
   }, [articles.length, fetchArticles]);  // Dépendance ajoutée pour suivre les changements correctement
 
-  /*const response = await fetch('/api/getArticles', {
-                method: 'GET'
-            });
-  if (response.ok) {
-    const data = await response.json();
-    //setArticles(data);
-  } else {
-    throw new Error('Failed to fetch articles');
-  }*/
 
   const VideoContainer = ({ src, title }) => (
     <div className="aspect-w-16 aspect-h-9 w-full overflow-hidden rounded-lg shadow-lg">
