@@ -3,10 +3,9 @@ import { useArticles } from "../ArticleContext";
 import { put } from '@vercel/blob';
 
 const ArticleForm = () => {
+    //a changer pour passer par Context
     //const { addArticle } = useArticles();
-    //test
-    const { addArticle } = useArticles();
-    //test
+    //a changer pour passer par Context
     const [article, setArticle] = useState({
         title: '',
         description: '',
@@ -46,8 +45,7 @@ const ArticleForm = () => {
 
         setLoading(true);
         try {
-            //test
-            /*
+            //a changer pour passer par Context
             const apiKey = process.env.REACT_APP_BLOB_KEY;
             const file = formData.get('imageFile');
 
@@ -64,10 +62,10 @@ const ArticleForm = () => {
                 body: JSON.stringify(obj)
             });
             
-            const data = await response.json();*/
+            const data = await response.json();
             
-            await addArticle(formData);
-            //test
+            //await addArticle(formData);
+            //a changer pour passer par Context
             setArticle({ title: '', description: '', videoUrl: '', link: '' });
             setImageFile(null);
             setSubmitted(true);
