@@ -67,8 +67,6 @@ const ArticleForm = () => {
             });
             
             const data = await response.json();*/
-            var obj = {title: formData.get('title'), description: formData.get('description'), videoUrl: formData.get('videoUrl'), link: formData.get('link')};
-            console.log('Adding obj: (form)', obj);
             
             await addArticle(formData);
             //a changer pour passer par Context
