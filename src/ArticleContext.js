@@ -51,7 +51,7 @@ export const ArticleProvider = ({ children }) => {
             const blob = await put(article.title, file, { access: 'public', token: apiKey });
             const retour = JSON.stringify(blob);
             const datablob = JSON.parse(retour);
-            /*const obj = {title: article.title, description: article.description,imageUrl: datablob.url, videoUrl: article.videoUrl, link: article.link};
+            const obj = {title: article.title, description: article.description,imageUrl: datablob.url, videoUrl: article.videoUrl, link: article.link};
         
             const response = await fetch('/api/addArticle', {
                 method: 'POST',
@@ -61,7 +61,7 @@ export const ArticleProvider = ({ children }) => {
                 body: JSON.stringify(obj)
             });
             
-            const data = await response.json();*/
+            const data = await response.json();
             //A changer pour passer par ici
 
             console.log('Response status for adding article:', response.status);
