@@ -4,7 +4,7 @@ import { put } from '@vercel/blob';
 
 const ArticleForm = () => {
     //a changer pour passer par Context
-    //const { addArticle } = useArticles();
+    const { addArticle } = useArticles();
     //a changer pour passer par Context
     const [article, setArticle] = useState({
         title: '',
@@ -46,7 +46,7 @@ const ArticleForm = () => {
         setLoading(true);
         try {
             //a changer pour passer par Context
-            const apiKey = process.env.REACT_APP_BLOB_KEY;
+            /*const apiKey = process.env.REACT_APP_BLOB_KEY;
             const file = formData.get('imageFile');
             var obj = {title: article.title, description: article.description, videoUrl: article.videoUrl, link: article.link};
             //,imageUrl: datablob.url
@@ -66,9 +66,9 @@ const ArticleForm = () => {
                 body: JSON.stringify(obj)
             });
             
-            const data = await response.json();
+            const data = await response.json();*/
             
-            //await addArticle(formData);
+            await addArticle(formData);
             //a changer pour passer par Context
             setArticle({ title: '', description: '', videoUrl: '', link: '' });
             setImageFile(null);
