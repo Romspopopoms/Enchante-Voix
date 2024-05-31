@@ -48,11 +48,14 @@ const ArticleForm = () => {
             //a changer pour passer par Context
             const apiKey = process.env.REACT_APP_BLOB_KEY;
             const file = formData.get('imageFile');
-
-            const blob = await put(article.title, file, { access: 'public', token: apiKey });
-            const retour = JSON.stringify(blob);
-            const datablob = JSON.parse(retour);
-            const obj = {title: article.title, description: article.description,imageUrl: datablob.url, videoUrl: article.videoUrl, link: article.link};
+            var obj = {title: article.title, description: article.description, videoUrl: article.videoUrl, link: article.link};
+            //,imageUrl: datablob.url
+            if (imageFile) {
+                const blob = await put(article.title, file, { access: 'public', token: apiKey });
+                const retour = JSON.stringify(blob);
+                const datablob = JSON.parse(retour);
+                obj[imageUrl] = datablob.url ;
+            }
         
             const response = await fetch('/api/addArticle', {
                 method: 'POST',
