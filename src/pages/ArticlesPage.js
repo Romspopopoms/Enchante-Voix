@@ -10,6 +10,7 @@ const ArticlePage = () => {
   
   for (const section in sections) {
     console.log('Fetching section from API',`${section}: ${sections[section]}`);
+    console.log('Fetching section from API test 1',`${section}: ${sections[section]}.section`);
   }
   console.log('-------------------------end test SLT----------------------------');
   
