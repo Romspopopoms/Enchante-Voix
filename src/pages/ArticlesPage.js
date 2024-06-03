@@ -4,13 +4,7 @@ import { useArticles } from '../ArticleContext';
 const ArticlePage = () => {
   const { articles, fetchArticles } = useArticles();
   const { sections, fetchSections  } = useArticles();
-  
-  useEffect(() => {
-    if (sections.length === 0) {
-      fetchSections();
-    }
-  }, [sections.length, fetchSections]);
-  
+
   console.log('Fetching sections from API', sections);
   
   useEffect(() => {
