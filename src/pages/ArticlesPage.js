@@ -12,7 +12,7 @@ const ArticlePage = () => {
     console.log('je test');
     console.log('Fetching section from API',`${sections[section]}`);
   }
-  console.log('-------------------------test SLT----------------------------');
+  console.log('-------------------------end test SLT----------------------------');
   
   useEffect(() => {
     if (articles.length === 0) {
