@@ -11,11 +11,11 @@ export default async function handler(req, res) {
         return res.status(405).json({ message: 'Method not allowed' });
     }
     
-    const { title, description, videoUrl, link, imageUrl } = req.body;
+    const { title, section, description, videoUrl, link, imageUrl } = req.body;
     try {
         const embedUrl = convertToEmbedURL(videoUrl);
-        const query = 'INSERT INTO articles (title, description, imageUrl, videoUrl, link) VALUES ($1, $2, $3, $4, $5) RETURNING *';
-        const params = [title, description, imageUrl, embedUrl, link];
+        const query = 'INSERT INTO articles (title, section, description, imageUrl, videoUrl, link) VALUES ($1, $2, $3, $4, $5) RETURNING *';
+        const params = [title, section, imageUrl, embedUrl, link];
         const { rows } = await pool.query(query, params);
         return res.status(200).json(rows[0]);
     } catch (error) {
