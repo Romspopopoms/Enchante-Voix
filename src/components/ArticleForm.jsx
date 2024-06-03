@@ -4,6 +4,7 @@ import { useArticles } from "../ArticleContext";
 const ArticleForm = () => {
     const { addArticle } = useArticles();
     const [article, setArticle] = useState({
+        section: '',
         title: '',
         description: '',
         videoUrl: '',
@@ -32,6 +33,7 @@ const ArticleForm = () => {
         }
 
         const formData = new FormData(e.target);
+        formData.append('section', article.section);
         formData.append('title', article.title);
         formData.append('description', article.description);
         if (imageFile) {
