@@ -10,15 +10,33 @@ const ArticlePage = () => {
     }
   }, [articles.length, fetchArticles]);
 
+  const SectionMenu = [
+    {
+      title: 'All',
+      href: '#all',
+      current: true
+    },
+    {
+      title: 'Technology',
+      href: '#technology',
+      current: false
+    },
+    {
+      title: 'Design',
+      href: '#design',
+      current: false
+    },
+  ];
+
   const VideoContainer = ({ src, title }) => (
-    <div className="aspect-w-16 aspect-h-9 w-full overflow-hidden rounded-lg shadow-lg max-w-[800px]">
+    <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-lg">
       <iframe
         src={src}
         title={title}
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
-        className="w-full h-full"
+        className="absolute top-0 left-0 w-full h-full"
       ></iframe>
     </div>
   );
@@ -26,7 +44,24 @@ const ArticlePage = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen overflow-y-auto mt-40 xl:mt-28 gap-y-8">
       <h2 className='text-center text-3xl font-bold text-[#c6941A] mb-5'>Articles</h2>
-      <div className="flex flex-col w-[90%] space-y-6 items-center">
+      
+      {/* Menu de navigation */}
+      <nav className="flex space-x-4 mb-8">
+        {SectionMenu.map((section, index) => (
+          <a
+            key={index}
+            href={section.href}
+            className={`px-3 py-2 rounded-md text-sm font-medium ${
+              section.current ? 'bg-gray-900 text-white' : 'text-gray-700 hover:bg-gray-700 hover:text-white'
+            }`}
+          >
+            {section.title}
+          </a>
+        ))}
+      </nav>
+
+      {/* Sections des articles */}
+      <div id="all" className="flex flex-col w-[90%] space-y-6 items-center">
         {articles.length > 0 ? (
           articles.map((article, index) => (
             <div key={index} className="bg-white p-6 rounded-lg shadow-lg flex flex-col space-y-4 max-w-[800px] w-full">
@@ -46,6 +81,42 @@ const ArticlePage = () => {
         ) : (
           <p className="text-gray-700 w-full text-center">Aucun article trouvé.</p>
         )}
+      </div>
+
+      <div id="technology" className="flex flex-col w-[90%] space-y-6 items-center">
+        {articles.filter(article => article.category === 'Technology').map((article, index) => (
+          <div key={index} className="bg-white p-6 rounded-lg shadow-lg flex flex-col space-y-4 max-w-[800px] w-full">
+            <h3 className='text-2xl font-semibold text-center'>{article.title}</h3>
+            <p className='text-gray-700 text-center'>{article.description}</p>
+            {article.imageurl && (
+              <img src={article.imageurl} alt={article.title} className="w-full max-h-[450px] object-cover rounded-md"/>
+            )}
+            {article.videourl && (
+              <VideoContainer src={article.videourl} title={`Embedded YouTube video: ${article.title}`} />
+            )}
+            {article.link && (
+              <a href={article.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-center">En savoir plus</a>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <div id="design" className="flex flex-col w-[90%] space-y-6 items-center">
+        {articles.filter(article => article.category === 'Design').map((article, index) => (
+          <div key={index} className="bg-white p-6 rounded-lg shadow-lg flex flex-col space-y-4 max-w-[800px] w-full">
+            <h3 className='text-2xl font-semibold text-center'>{article.title}</h3>
+            <p className='text-gray-700 text-center'>{article.description}</p>
+            {article.imageurl && (
+              <img src={article.imageurl} alt={article.title} className="w-full max-h-[450px] object-cover rounded-md"/>
+            )}
+            {article.videourl && (
+              <VideoContainer src={article.videourl} title={`Embedded YouTube video: ${article.title}`} />
+            )}
+            {article.link && (
+              <a href={article.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-center">En savoir plus</a>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );
