@@ -13,23 +13,20 @@ const ArticlePage = () => {
   const SectionMenu = [
     {
       title: 'All',
-      href: '#all',
-      current: true
+      href: '#all'
     },
     {
       title: 'Technology',
-      href: '#technology',
-      current: false
+      href: '#technology'
     },
     {
       title: 'Design',
-      href: '#design',
-      current: false
+      href: '#design'
     },
   ];
 
   const VideoContainer = ({ src, title }) => (
-    <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-lg">
+    <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-lg max-w-[800px]">
       <iframe
         src={src}
         title={title}
@@ -51,9 +48,7 @@ const ArticlePage = () => {
           <a
             key={index}
             href={section.href}
-            className={`px-3 py-2 rounded-md text-sm font-medium ${
-              section.current ? 'bg-gray-900 text-white' : 'text-gray-700 hover:bg-gray-700 hover:text-white'
-            }`}
+            className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-700 hover:text-white"
           >
             {section.title}
           </a>
