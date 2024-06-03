@@ -7,8 +7,8 @@ const ArticlePage = () => {
 
   console.log('-------------------------test SLT----------------------------');
   console.log('Fetching sections from API', sections);
-  console.log('Fetching sections from API test 1', sections.0);
-  console.log('Fetching sections from API test 2', sections.1);
+  console.log('Fetching sections from API test 1', sections[0]);
+  console.log('Fetching sections from API test 2', sections[1]);
   const retour = JSON.stringify(sections);
   const sectionsReturn = JSON.parse(retour);
   console.log('Fetching sections from API after', sectionsReturn);
