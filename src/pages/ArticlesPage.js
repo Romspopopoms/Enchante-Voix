@@ -9,8 +9,7 @@ const ArticlePage = () => {
   console.log('Fetching sections from API', sections);
   
   for (const section in sections) {
-    console.log('je test');
-    console.log('Fetching section from API',`${sections[section]}`);
+    console.log('Fetching section from API',`${section}: ${sections[section]}`);
   }
   console.log('-------------------------end test SLT----------------------------');
   
@@ -34,7 +33,6 @@ const ArticlePage = () => {
       href: '#design'
     },
   ];
-  console.log('Fetching sections', SectionMenu);
 
   const VideoContainer = ({ src, title }) => (
     <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-lg max-w-[800px]">
