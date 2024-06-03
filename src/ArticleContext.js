@@ -98,11 +98,15 @@ export const ArticleProvider = ({ children }) => {
     };
 
     useEffect(() => {
+        fetchSections();
+    }, []);
+    
+    useEffect(() => {
         fetchArticles();
     }, []);
 
     return (
-        <ArticleContext.Provider value={{ articles, addArticle, fetchArticles, loading, error }}>
+        <ArticleContext.Provider value={{ articles, addArticle, fetchSections, fetchArticles, loading, error }}>
             {children}
         </ArticleContext.Provider>
     );
