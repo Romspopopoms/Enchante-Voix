@@ -6,10 +6,33 @@ const ArticleContext = createContext();
 export const useArticles = () => useContext(ArticleContext);
 
 export const ArticleProvider = ({ children }) => {
+    const [sections, setSections] = useState([]);
     const [articles, setArticles] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    const fetchSections = async () => {
+        setLoading(true);
+        console.log('Fetching sections from API');
+        try {
+            const response = await fetch('/api/getSection');
+            console.log('Response status:', response.status);
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Sections fetched:', data);
+                setSections(data);
+            } else {
+                const errorText = await response.text();
+                throw new Error('Failed to fetch sections: ' + errorText);
+            }
+        } catch (error) {
+            console.error('Error fetching sections:', error);
+            setError(error);
+        } finally {
+            setLoading(false);
+        }
+    };
+    
     const fetchArticles = async () => {
         setLoading(true);
         console.log('Fetching articles from API');
