@@ -6,19 +6,10 @@ const ArticlePage = () => {
   const { sections, fetchSections  } = useArticles();
 
   console.log('-------------------------test SLT----------------------------');
-  console.log('Fetching sections from API', sections);
-  console.log('Fetching sections from API test 1', sections[0]);
-  console.log('Fetching sections from API test 2', sections[1]);
-  const retour = JSON.stringify(sections[0]);
-  const sectionsReturn1 = JSON.parse(retour);
-  console.log('Fetching sections from API after', sectionsReturn1.section);
-  const sectionsReturn2 = JSON.parse(sections[1]);
-  console.log('Fetching sections from API after', sectionsReturn2.section);
-  
   for (const section in sections) {
-    console.log('Fetching section from API',`${section}: ${sections[section]}`);
-    console.log('Fetching section from API test 1',`${section}: ${sections[section]}.section`);
-    console.log('Fetching section from API test 1',`${section}: ${sections[section]}.section`);
+    const retour = JSON.stringify(sections[${section}]);
+    const sectionsReturn1 = JSON.parse(retour);
+    console.log('Fetching sections from API after', sectionsReturn1.section);
   }
   console.log('-------------------------end test SLT----------------------------');
   
