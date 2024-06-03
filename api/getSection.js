@@ -15,9 +15,9 @@ export default async function handler(req, res) {
 
     try {
         console.log('Querying database for articles');
-        const query = 'SELECT * FROM articles';
+        const query = 'SELECT distinct section FROM articles';
         const { rows } = await pool.query(query);
-        console.log('Articles retrieved:', rows);
+        console.log('section retrieved:', rows);
         res.status(200).json(rows);
     } catch (error) {
         console.error('Database error:', error);
