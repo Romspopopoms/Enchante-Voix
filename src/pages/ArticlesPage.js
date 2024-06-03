@@ -7,6 +7,10 @@ const ArticlePage = () => {
 
   console.log('Fetching sections from API', sections);
   
+  for (const section in sections) {
+    console.log(`${sections[section]}`);
+  }
+  
   useEffect(() => {
     if (articles.length === 0) {
       fetchArticles();
