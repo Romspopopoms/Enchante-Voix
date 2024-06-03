@@ -60,6 +60,7 @@ const ArticleForm = () => {
             {submitted && <p className="text-green-500">Article créé avec succès!</p>}
             {error && <p className="text-red-500">{error}</p>}
             <h2 className="text-4xl text-center">Créer un article</h2>
+            <input type="text" name="section" value={article.section} onChange={handleChange} placeholder="Titre de la section" className='h-10 w-full rounded-xl text-center shadow-black' required />
             <input type="text" name="title" value={article.title} onChange={handleChange} placeholder="Titre de l'article" className='h-10 w-full rounded-xl text-center shadow-black' required />
             <textarea name="description" value={article.description} onChange={handleChange} placeholder="Description" className='h-40 w-full rounded-xl text-center shadow-black' required />
             <input type="file" onChange={handleImageChange} disabled={loading} className='file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-yellow-600 hover:file:bg-violet-100'/>
