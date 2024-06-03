@@ -106,7 +106,7 @@ export const ArticleProvider = ({ children }) => {
     }, []);
 
     return (
-        <ArticleContext.Provider value={{ articles, addArticle, fetchSections, fetchArticles, loading, error }}>
+        <ArticleContext.Provider value={{ articles, addArticle, sections, fetchSections, fetchArticles, loading, error }}>
             {children}
         </ArticleContext.Provider>
     );
