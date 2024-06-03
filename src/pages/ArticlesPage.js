@@ -3,13 +3,16 @@ import { useArticles } from '../ArticleContext';
 
 const ArticlePage = () => {
   const { articles, fetchArticles } = useArticles();
+  const { sections, fetchSections  } = useArticles();
 
+  console.log('Fetching sections from API', sections);
+  
   useEffect(() => {
     if (articles.length === 0) {
       fetchArticles();
     }
   }, [articles.length, fetchArticles]);
-
+  
   const SectionMenu = [
     {
       title: 'All',
@@ -24,6 +27,7 @@ const ArticlePage = () => {
       href: '#design'
     },
   ];
+  console.log('Fetching sections', SectionMenu);
 
   const VideoContainer = ({ src, title }) => (
     <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-lg max-w-[800px]">
