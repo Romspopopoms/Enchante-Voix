@@ -7,11 +7,13 @@ const ArticlePage = () => {
 
   console.log('-------------------------test SLT----------------------------');
   console.log('Fetching sections from API', sections);
-  console.log('Fetching sections from API test 1', sections[0].section);
+  console.log('Fetching sections from API test 1', sections[0]);
   console.log('Fetching sections from API test 2', sections[1]);
-  const retour = JSON.stringify(sections);
-  const sectionsReturn = JSON.parse(retour);
-  console.log('Fetching sections from API after', sectionsReturn);
+  const retour = JSON.stringify(sections[0]);
+  const sectionsReturn1 = JSON.parse(retour);
+  console.log('Fetching sections from API after', sectionsReturn1.section);
+  const sectionsReturn2 = JSON.parse(sections[1]);
+  console.log('Fetching sections from API after', sectionsReturn2.section);
   
   for (const section in sections) {
     console.log('Fetching section from API',`${section}: ${sections[section]}`);
