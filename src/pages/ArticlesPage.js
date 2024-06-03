@@ -8,7 +8,8 @@ const ArticlePage = () => {
   console.log('Fetching sections from API', sections);
   
   for (const section in sections) {
-    console.log(`${sections[section]}`);
+    console.log('je test');
+    console.log('Fetching section from API',`${sections[section]}`);
   }
   
   useEffect(() => {
