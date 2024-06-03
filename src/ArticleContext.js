@@ -46,6 +46,7 @@ export const ArticleProvider = ({ children }) => {
                 const key = "imageUrl";
                 obj[key] = datablob.url ;
             }
+            console.log('debugsection:', obj);
         
             const response = await fetch('/api/addArticle', {
                 method: 'POST',
