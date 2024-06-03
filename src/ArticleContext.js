@@ -38,7 +38,7 @@ export const ArticleProvider = ({ children }) => {
         try {   
             const apiKey = process.env.REACT_APP_BLOB_KEY;
             const file = formData.get('imageFile');
-            var obj = {title: formData.get('title'), description: formData.get('description'), videoUrl: formData.get('videoUrl'), link: formData.get('link')};
+            var obj = {section: formData.get('section'), title: formData.get('title'), description: formData.get('description'), videoUrl: formData.get('videoUrl'), link: formData.get('link')};
             if (file) {
                 const blob = await put(formData.get('title'), file, { access: 'public', token: apiKey });
                 const retour = JSON.stringify(blob);
