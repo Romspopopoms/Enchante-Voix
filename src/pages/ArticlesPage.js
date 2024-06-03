@@ -5,12 +5,14 @@ const ArticlePage = () => {
   const { articles, fetchArticles } = useArticles();
   const { sections, fetchSections  } = useArticles();
 
+  console.log('-------------------------test SLT----------------------------');
   console.log('Fetching sections from API', sections);
   
   for (const section in sections) {
     console.log('je test');
     console.log('Fetching section from API',`${sections[section]}`);
   }
+  console.log('-------------------------test SLT----------------------------');
   
   useEffect(() => {
     if (articles.length === 0) {
