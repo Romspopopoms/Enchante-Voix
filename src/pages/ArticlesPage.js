@@ -36,7 +36,7 @@ const ArticlePage = () => {
 
   const SectionContainer = ({ title }) => (
    <div id={title} className="flex flex-col w-[90%] space-y-6 items-center">
-      {articles.filter(article => article.category === {title}).map((article, index) => (
+      {articles.filter(article => article.section === {title}).map((article, index) => (
         <div key={index} className="bg-white p-6 rounded-lg shadow-lg flex flex-col space-y-4 max-w-[800px] w-full">
           <h3 className='text-2xl font-semibold text-center'>{article.title}</h3>
           <p className='text-gray-700 text-center'>{article.description}</p>
