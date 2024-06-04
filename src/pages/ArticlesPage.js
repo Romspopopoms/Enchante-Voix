@@ -6,7 +6,7 @@ const ArticlePage = () => {
   const { sections, fetchSections  } = useArticles();
 
   console.log('-------------------------test SLT----------------------------');
-  for (let i = 0; i < sections.lenght; i++) {
+  for (let i = 0; i < sections.length; i++) {
     const retour = JSON.stringify(sections[i]);
     const sectionsReturn1 = JSON.parse(retour);
     console.log('Fetching sections from API after', sectionsReturn1.section);
