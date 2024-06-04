@@ -15,7 +15,7 @@ export default async function handler(req, res) {
 
     try {
         console.log('Querying database for articles');
-        const query = 'SELECT distinct section FROM articles';
+        const query = 'SELECT distinct section FROM articles ORDER BY section ASC';
         const { rows } = await pool.query(query);
         console.log('section retrieved:', rows);
         res.status(200).json(rows);
