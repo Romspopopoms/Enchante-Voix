@@ -32,10 +32,9 @@ const App = () => {
               <Route path="/admin" element={<AdminPage />} />
               <Route path="/Admin" element={<AdminPage />} />
               <Route path="/articles" element={<ArticlePage />} />
+              <Route path="/articles/:section" element={<ArticlePage />} />
               <Route path="/ajout-articles" element={<AjoutDarticlesPages />} />
               <Route path="/analyse" element={<AnalysePage />} />
-
-              {/* Ajoutez d'autres routes selon vos besoins */}
             </Routes>
             <Footer />
             <SpeedInsights />
