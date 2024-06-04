@@ -94,41 +94,10 @@ const ArticlePage = () => {
         )}
       </div>
 
-      <div id="technology" className="flex flex-col w-[90%] space-y-6 items-center">
-        {articles.filter(article => article.category === 'Technology').map((article, index) => (
-          <div key={index} className="bg-white p-6 rounded-lg shadow-lg flex flex-col space-y-4 max-w-[800px] w-full">
-            <h3 className='text-2xl font-semibold text-center'>{article.title}</h3>
-            <p className='text-gray-700 text-center'>{article.description}</p>
-            {article.imageurl && (
-              <img src={article.imageurl} alt={article.title} className="w-full max-h-[450px] object-cover rounded-md"/>
-            )}
-            {article.videourl && (
-              <VideoContainer src={article.videourl} title={`Embedded YouTube video: ${article.title}`} />
-            )}
-            {article.link && (
-              <a href={article.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-center">En savoir plus</a>
-            )}
-          </div>
-        ))}
-      </div>
-
-      <div id="design" className="flex flex-col w-[90%] space-y-6 items-center">
-        {articles.filter(article => article.category === 'Design').map((article, index) => (
-          <div key={index} className="bg-white p-6 rounded-lg shadow-lg flex flex-col space-y-4 max-w-[800px] w-full">
-            <h3 className='text-2xl font-semibold text-center'>{article.title}</h3>
-            <p className='text-gray-700 text-center'>{article.description}</p>
-            {article.imageurl && (
-              <img src={article.imageurl} alt={article.title} className="w-full max-h-[450px] object-cover rounded-md"/>
-            )}
-            {article.videourl && (
-              <VideoContainer src={article.videourl} title={`Embedded YouTube video: ${article.title}`} />
-            )}
-            {article.link && (
-              <a href={article.link} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline text-center">En savoir plus</a>
-            )}
-          </div>
-        ))}
-      </div>
+      {SectionMenu.map((section, index) => (
+        <SectionContainer title={`${section.title}`} />
+      ))}
+      
     </div>
   );
 };
