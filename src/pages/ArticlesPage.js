@@ -12,8 +12,8 @@ const ArticlePage = () => {
     const sectionsReturn1 = JSON.parse(retour);
     console.log('Fetching sections from API after', sectionsReturn1.section);
     SectionMenu.push({
-      title: 'sectionsReturn1.section',
-      href: '#' + 'sectionsReturn1.section'
+      title: sectionsReturn1.section,
+      href: '#' + sectionsReturn1.section
     });
   }
   console.log('-------------------------end test SLT----------------------------');
