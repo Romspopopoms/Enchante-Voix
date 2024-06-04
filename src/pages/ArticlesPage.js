@@ -5,40 +5,22 @@ const ArticlePage = () => {
   const { articles, fetchArticles } = useArticles();
   const { sections, fetchSections  } = useArticles();
   var SectionMenu = []; // Create an empty array
-
-  console.log('-------------------------test SLT----------------------------');
+  
   for (let i = 0; i < sections.length; i++) {
     const retour = JSON.stringify(sections[i]);
     const sectionsReturn1 = JSON.parse(retour);
-    console.log('Fetching sections from API after', sectionsReturn1.section);
     SectionMenu.push({
       title: sectionsReturn1.section,
       href: '#' + sectionsReturn1.section
     });
   }
-  console.log('-------------------------end test SLT----------------------------');
   
   useEffect(() => {
     if (articles.length === 0) {
       fetchArticles();
     }
   }, [articles.length, fetchArticles]);
-  
-  /*const SectionMenu = [
-    {
-      title: 'All',
-      href: '#all'
-    },
-    {
-      title: 'Technology',
-      href: '#technology'
-    },
-    {
-      title: 'Design',
-      href: '#design'
-    },
-  ];*/
-
+ 
   const VideoContainer = ({ src, title }) => (
     <div className="relative pb-[56.25%] h-0 overflow-hidden rounded-lg shadow-lg max-w-[800px]">
       <iframe
